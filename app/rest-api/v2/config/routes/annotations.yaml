@@ -1,7 +1,7 @@
 controllers:
     resource: ../../src/Controller/
     type: annotation
-    prefix: /api/v3  #route for logging in
+    prefix: /api/v2  #route for logging in
 
 kernel:
     resource: ../../src/Kernel.php
