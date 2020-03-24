@@ -70,31 +70,34 @@ class LoginController
         $test = $this->tokenRepository->findOneByData(substr($request->headers->get('Authorization'), 7)) ?? "";
         if($test instanceof Token)
         {
-            $test_user = $this->userRepository->findOneActiveById($test->getId());
-            $this->jwtTtl = "5 minutes";
-            $createdAt = (new DateTime())->format(DATE_ISO8601);
-            $expiresAt = (new DateTime())->modify($this->jwtTtl)->format(DATE_ISO8601);
-
-            $test_tokenData = [
-                'id' => $test->getId(),
-                'created_at' => $createdAt,
-                'expires_at' => $expiresAt,
-                'user' => [
-                    'id' => $test_user->getId(),
-                    'roles' => $test_user->getRoles(),
-                ],
-            ];
-
-            if($request->headers->has('Authorization') &&
-                0 === strpos($request->headers->get('Authorization'), 'Bearer ') && $test)
+            if($test->getExpiresAt() >= (new DateTime())->format(DATE_ISO8601))
             {
-                $test->setCreatedAt($createdAt);
-                $test->setExpiresAt($expiresAt);
-                $test->setData($this->jwtUtil->encode($test_tokenData));
-                $this->entityManager->persist($test);
-                $this->entityManager->flush();
+                $test_user = $this->userRepository->findOneActiveById($test->getId());
+                $this->jwtTtl = "5 minutes";
+                $createdAt = (new DateTime())->format(DATE_ISO8601);
+                $expiresAt = (new DateTime())->modify($this->jwtTtl)->format(DATE_ISO8601);
 
-                return new Response($test->getData(), Response::HTTP_CREATED);
+                $test_tokenData = [
+                    'id' => $test->getId(),
+                    'created_at' => $createdAt,
+                    'expires_at' => $expiresAt,
+                    'user' => [
+                        'id' => $test_user->getId(),
+                        'roles' => $test_user->getRoles(),
+                    ],
+                ];
+
+                if($request->headers->has('Authorization') &&
+                    0 === strpos($request->headers->get('Authorization'), 'Bearer ') && $test)
+                {
+                    $test->setCreatedAt($createdAt);
+                    $test->setExpiresAt($expiresAt);
+                    $test->setData($this->jwtUtil->encode($test_tokenData));
+                    $this->entityManager->persist($test);
+                    $this->entityManager->flush();
+
+                    return new Response($test->getData(), Response::HTTP_CREATED);
+                }
             }
         }
 
