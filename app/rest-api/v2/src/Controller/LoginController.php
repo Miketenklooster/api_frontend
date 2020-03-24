@@ -135,7 +135,9 @@ class LoginController
             ],
         ];
 
-        if(!$this->entityManager->getRepository(Token::class)->findOneBy(['id' => $id]) == $id)
+        $token_id = $this->entityManager->getRepository(Token::class)->findOneBy(['id' => $id]);
+
+        if(!$token_id == $id)
         {
             $token = new Token();
             $token->setId($id);
@@ -144,10 +146,9 @@ class LoginController
             $token->setUser($user);
             $token->setData($this->jwtUtil->encode($tokenData));
         } else {
-            $token = $this->entityManager->getRepository(Token::class)->findOneBy(['id' => $id]);
-            $token->setCreatedAt($createdAt);
-            $token->setExpiresAt($expiresAt);
-            $token->setData($this->jwtUtil->encode($tokenData));
+            $token_id->setCreatedAt($createdAt);
+            $token_id->setExpiresAt($expiresAt);
+            $token_id->setData($this->jwtUtil->encode($tokenData));
         }
 
         $this->entityManager->persist($token);
