@@ -1,0 +1,13 @@
+// master.scss
+@import "dist/scss/vars.scss";
+@import "dist/scss/mixins.scss";
+
+// use mixins
+#my-layout {
+  @include flex;
+}
+
+// use variables
+#my-layout {
+  padding: $base-line-ems;
+}
