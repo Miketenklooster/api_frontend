@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Title</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="css/uikit.min.css" />
+        <script src="js/uikit.min.js"></script>
+        <script src="js/uikit-icons.min.js"></script>
+        <style>
+            section{
+                margin: 50px 50px 0;
+            }
+        </style>
+    </head>
+    <body>
+    <header>
+
+    </header>
+    <main>
+        <article class="uk-position-center">
+            <section>
+                <div class="uk-alert-danger uk-text-center" uk-alert >
+                    <button class="uk-alert-close" type="button" uk-close></button>
+                    <p>This is an alert wich you can cancel</p>
+                </div>
+            </section>
+            <section >
+                <div class="uk-card uk-card-default uk-card-body">
+                    <ul uk-accordion="collapsible: false">
+                        <li>
+                            <a class="uk-accordion-title" href="#">Item 1</a>
+                            <div class="uk-accordion-content">
+                                <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor reprehenderit.</p>
+                            </div>
+                        </li>
+                        <li class="uk-open">
+                            <a class="uk-accordion-title" href="#">Item 2</a>
+                            <div class="uk-accordion-content">
+                                <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor reprehenderit.</p>
+                            </div>
+                        </li>
+                        <li>
+                            <a class="uk-accordion-title" href="#">Item 3</a>
+                            <div class="uk-accordion-content">
+                                <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor reprehenderit.</p>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </section>
+            <section>
+                <progress id="js-progressbar" class="uk-progress" value="0" max="100"></progress>
+            </section>
+            <section>
+                <div class="uk-card uk-card-default uk-card-body uk-flex uk-flex-center">
+                    <div class="uk-grid-small uk-child-width-auto" uk-grid uk-countdown="date: 2020-04-03T11:19:11+00:00">
+                        <div>
+                            <div class="uk-countdown-number uk-countdown-days"></div>
+                            <div class="uk-countdown-label uk-margin-small uk-text-center uk-visible@s">Days</div>
+                        </div>
+                        <div class="uk-countdown-separator">:</div>
+                        <div>
+                            <div class="uk-countdown-number uk-countdown-hours"></div>
+                            <div class="uk-countdown-label uk-margin-small uk-text-center uk-visible@s">Hours</div>
+                        </div>
+                        <div class="uk-countdown-separator">:</div>
+                        <div>
+                            <div class="uk-countdown-number uk-countdown-minutes"></div>
+                            <div class="uk-countdown-label uk-margin-small uk-text-center uk-visible@s">Minutes</div>
+                        </div>
+                        <div class="uk-countdown-separator">:</div>
+                        <div>
+                            <div class="uk-countdown-number uk-countdown-seconds"></div>
+                            <div class="uk-countdown-label uk-margin-small uk-text-center uk-visible@s">Seconds</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </article>
+    </main>
+    <script>
+
+        UIkit.util.ready(function () {
+
+            var bar = document.getElementById('js-progressbar');
+
+            var animate = setInterval(function () {
+
+                bar.value += 0.1;
+
+                if (bar.value >= bar.max) {
+                    bar.value = 0;
+                }
+
+            }, 10);
+        });
+
+    </script>
+    </body>
+</html>
+
+
