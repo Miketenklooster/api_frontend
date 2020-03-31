@@ -1,0 +1,54 @@
+
+<!--
+GEBRUIK GEWOON NIET DIT FRONTEND FRAMEWORK, ECHT NIET FIJN OM MEE TE WERKEN
+1. Documentatie onduidelijk
+2. De helft van de benamingen zijn niet compleet of helemaal overbodig
+3. De styling zelf is ook niet op en top
+4. gewoon niet fijn om mee te werken
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+        <title>Metro UI</title>
+
+        <!-- Metro 4 -->
+        <link rel="stylesheet" href="https://cdn.metroui.org.ua/v4.3.2/css/metro-all.min.css">
+        <!--  Styling -->
+        <style>
+            section{
+                margin: 50px 50px 0;
+            }
+        </style>
+    </head>
+    <body>
+        <header>
+            <h1 class="text-center">Metro 4</h1>
+        </header>
+        <main>
+            <article class="mx-auto">
+                <section class="mx-auto">
+                    <div id="donut_val" data-role="donut" class="mx-auto"></div>
+                </section>
+                <section>
+                    <input type="checkbox" data-role="switch" data-material="true" >
+                    <div data-role="cube"></div>
+                </section>
+                <section>
+                    <input data-role="rating">
+                </section>
+            </article>
+        </main>
+        <!-- Metro 4 -->
+        <script src="https://cdn.metroui.org.ua/v4.3.2/js/metro.min.js"></script>
+        <!-- Script -->
+        <script>
+            (function () {
+                var donut = $('#donut_val').data('donut');
+                donut.val(Metro.utils.random(0, 100));
+            })();
+        </script>
+    </body>
+</html>

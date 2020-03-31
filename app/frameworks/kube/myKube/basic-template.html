@@ -1,0 +1,180 @@
+<!doctype html>
+<html>
+<head>
+    <title>Basic Template</title>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Kube CSS -->
+    <link rel="stylesheet" href="kube/master.scss">
+    <link rel="stylesheet" href="kube/dist/css/kube.min.css">
+
+    <style>
+        body{
+            margin: 50px 50px 0;
+        }
+        section{
+            margin: 50px 0;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Hello, world!</h1>
+    </header>
+    <main>
+        <section>
+            <table class="is-responsive is-striped">
+                <thead>
+                <tr>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>Points</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td data-label="First Name">Goku</td>
+                    <td data-label="Last Name">Son</td>
+                    <td data-label="Points">9001</td>
+                </tr>
+                <tr>
+                    <td data-label="First Name">Gohan</td>
+                    <td data-label="Last Name">Son</td>
+                    <td data-label="Points">5301</td>
+                </tr>
+                </tbody>
+            </table>
+        </section>
+        <section>
+            <button class="button is-secondary" data-name="dropdown" data-kube="dropdown" data-target="#dropdown">
+                Show
+                <span class="caret is-down"></span>
+            </button>
+
+            <div id="dropdown" class="dropdown is-hidden">
+                <a href="#" data-command="dropdown.add" data-id="1" data-add="New item">Add</a>
+                <a href="#" data-command="dropdown.remove" data-id="1">Remove</a>
+            </div>
+        </section>
+        <section>
+            <form method="post" action="">
+                <fieldset>
+                    <legend>Login data</legend>
+                    <div class="form-item">
+                    <label>Name</label>
+                    <input type="text" name="name" class="w50">
+                </div>
+
+                    <div class="form-item">
+                        <label>Country</label>
+                        <select>
+                            <option value="">---</option>
+                        </select>
+                    </div>
+
+                    <div class="form-item">
+                        <label class="is-checkbox"><input type="checkbox"> Check me</label>
+                        <label class="is-checkbox"><input type="radio"> Radio me</label>
+                    </div>
+
+                    <div class="form-item">
+                        <textarea rows="6"></textarea>
+                    </div>
+
+                    <div class="form-item is-buttons">
+                        <button class="button">Log in</button>
+                        <button class="button is-tertiary">Cancel</button>
+                    </div>
+                </fieldset>
+            </form>
+        </section>
+        <section>
+            <div data-kube="progress-bar">
+                <button class="button is-secondary" data-type="show">Show</button>
+                <button class="button is-secondary" data-type="hide">Hide</button>
+                <button class="button is-secondary" data-type="update">Update</button>
+            </div>
+        </section>
+    </main>
+
+
+<!-- Kube JS (optional if you are using Kube CSS only) -->
+    <script src="kube/dist/js/kube.min.js"></script>
+    <script>
+
+        $K.init({
+            observer: true
+        });
+
+        /**
+         * progress bar
+         */
+        (function($K)
+        {
+            $K.add('module', 'progress-bar', {
+                init: function(app, context)
+                {
+                    this.app = app;
+
+                    // define service
+                    this.progress = app.progress;
+                },
+                // events
+                onclick: function(e, element, type)
+                {
+                    e.preventDefault();
+                    if (type === 'show')
+                    {
+                        this.progress.show();
+                    }
+                    else if (type === 'hide')
+                    {
+                        this.progress.hide();
+                    }
+                    else if (type === 'update')
+                    {
+                        this.progress.update({ value: 50 });
+                    }
+                }
+            });
+        })(Kube);
+
+        /**
+         * dropdown
+         */
+        (function($K)
+        {
+            $K.add('module', 'dropdown', {
+                init: function(app, context)
+                {
+                    this.app = app;
+
+                    this.dropdown = app.dropdown;
+                    console.log(this.dropdown);
+                },
+                // catch commands
+                onmessage: {
+                    dropdown: {
+                        add: function(sender, $element, args)
+                        {
+                            if (sender._id === 'mydropdown')
+                            {
+                                console.log('Add action');
+                            }
+                        },
+                        remove: function(sender, $element, args)
+                        {
+                            if (sender._id === 'mydropdown')
+                            {
+                                console.log('Remove action');
+                            }
+                        }
+                    }
+                }
+            });
+        })(Kube);
+    </script>
+</body>
+</html>
