@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="f2fff338-9f32-4877-a79d-f0d2127b8566" name="Default Changelist" comment="" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ComposerSettings" doNotAsk="true" synchronizationState="SYNCHRONIZE">
+    <pharConfigPath>$PROJECT_DIR$/composer.json</pharConfigPath>
+    <execution>
+      <executable />
+    </execution>
+  </component>
+  <component name="PhpWorkspaceProjectConfiguration">
+    <include_path>
+      <path value="$PROJECT_DIR$/vendor/ralouphie/getallheaders" />
+      <path value="$PROJECT_DIR$/vendor/composer" />
+      <path value="$PROJECT_DIR$/vendor/psr/http-message" />
+      <path value="$PROJECT_DIR$/vendor/guzzlehttp/psr7" />
+      <path value="$PROJECT_DIR$/vendor/guzzlehttp/guzzle" />
+      <path value="$PROJECT_DIR$/vendor/guzzlehttp/promises" />
+    </include_path>
+  </component>
+  <component name="ProjectId" id="1aFzeP0rkqYxKXNP0q05el1iOPE" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showExcludedFiles" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/dist/img" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\xampp\htdocs\frontend_framework\uikit_project\php_calls\dist\img" />
+      <recent name="C:\xampp\htdocs\frontend_framework\uikit_project\php_calls\dist" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\xampp\htdocs\frontend_framework\uikit_project\php_calls\controller" />
+      <recent name="C:\xampp\htdocs\frontend_framework\uikit_project\php_calls" />
+    </key>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="f2fff338-9f32-4877-a79d-f0d2127b8566" name="Default Changelist" comment="" />
+      <created>1586346225253</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1586346225253</updated>
+      <workItem from="1586346227822" duration="6726000" />
+      <workItem from="1586353039927" duration="3488000" />
+      <workItem from="1586416508404" duration="13486000" />
+      <workItem from="1586437147801" duration="855000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="1650" y="276" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1586417696944">
+      <screen x="0" y="0" width="3840" height="1040" />
+    </state>
+    <state x="1650" y="276" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.3840.1040@0.0.3840.1040" timestamp="1586417696944" />
+    <state x="1754" y="444" key="NewPhpFileDialog" timestamp="1586347150491">
+      <screen x="0" y="0" width="3840" height="1040" />
+    </state>
+    <state x="1754" y="444" key="NewPhpFileDialog/0.0.3840.1040@0.0.3840.1040" timestamp="1586347150491" />
+    <state x="1616" y="345" key="com.intellij.ide.util.TipDialog" timestamp="1586437148124">
+      <screen x="0" y="0" width="3840" height="1040" />
+    </state>
+    <state x="1616" y="345" key="com.intellij.ide.util.TipDialog/0.0.3840.1040@0.0.3840.1040" timestamp="1586437148124" />
+    <state x="1583" y="225" width="672" height="678" key="search.everywhere.popup" timestamp="1586437396161">
+      <screen x="0" y="0" width="3840" height="1040" />
+    </state>
+    <state x="1583" y="225" width="672" height="678" key="search.everywhere.popup/0.0.3840.1040@0.0.3840.1040" timestamp="1586437396161" />
+  </component>
+</project>
