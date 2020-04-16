@@ -1,41 +1,5 @@
 <?php
-
 namespace view;
-
-require('../controller/MovieController.php');
-use controller\MovieController;
-
-$movie = new MovieController();
-
-if(isset($_SERVER["HTTP_AUTHORIZATION"]))
-{
-    $movies = $movie->getAll($_SERVER["HTTP_AUTHORIZATION"]);
-} else {
-    $movies =
-    [
-        [
-            "id"=> 1,
-            "name"=> "Movie Title 1",
-            "description"=> "Movie first Description"
-        ],
-        [
-            "id"=> 2,
-            "name"=> "Movie Title 2",
-            "description"=> "Movie Description number 2"
-        ],
-        [
-            "id"=> 3,
-            "name"=> "This name",
-            "description"=> "This is the third description"
-        ],
-        [
-            "id" => 4,
-            "name"=> "This is the name",
-            "description" => "This is the fourth description"
-        ]
-    ];
-}
-
 ?>
 <!DOCTYPE html>
 <html>
@@ -64,21 +28,51 @@ if(isset($_SERVER["HTTP_AUTHORIZATION"]))
                         <th>Description</th>
                     </tr>
                 </thead>
-                <tbody>
-                <?php foreach ($movies as $movie_row): ?>
-                    <tr>
-                        <td><?= $movie_row["id"]; ?></td>
-                        <td><?= $movie_row["name"]; ?></td>
-                        <td><?= $movie_row["description"];?></td>
-                    </tr>
-                <?php endforeach; ?>
+                <tbody id="movies-body">
                 </tbody>
             </table>
         </section>
     </article>
 </main>
 <script>
+    //FETCH
 
+    const tbody = document.getElementById('movies-body'); // Get the list where we will place our authors
+    const url = "http://127.0.0.1:8000/api/v8";
+
+    fetch(url + "/movie", {
+        method: "GET",
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': "Bearer " + sessionStorage.getItem("bearer_token")
+        }
+        //body: //je moet id meegeven.
+    })
+        .then((response) => response.json())
+        .then(function(data) {
+            const movie = data["message"];
+            sessionStorage.setItem("bearer_token", data["access_token"]);
+
+            return movie.map(function(movie) { // Map through the results and for each run the code below
+                const tr = document.createElement('tr'), //  Create the elements we need
+                    td = document.createElement('td'),
+                    td2 = document.createElement('td'),
+                    td3 = document.createElement('td');
+
+                td.innerHTML = movie["id"];  // Add the source of the image to be the src of the img element
+                td2.innerHTML = movie["name"]; // Make the HTML of our span to be the first and last name of our movie
+                td3.innerHTML = movie["description"]; // Make the HTML of our span to be the first and last name of our movie
+
+                tr.appendChild(td);
+                tr.appendChild(td2);
+                tr.appendChild(td3);
+                tbody.appendChild(tr);
+            })
+        })
+        .catch(function (error) {
+            console.error(error);
+            window.location.href = "http://localhost/frontend_framework/uikit_project/php_calls/view/login.php";
+        })
 </script>
 </body>
 </html>
