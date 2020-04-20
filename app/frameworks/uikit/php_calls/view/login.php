@@ -41,7 +41,7 @@ namespace view;
     </main>
     <script>
        //Fetch
-       const url = "http://127.0.0.1:8000/api/v8";
+       const url = "http://127.0.0.1:8000/api/v3";
 
        document.getElementById('login-form').addEventListener("submit", function (e) {
            e.preventDefault();
@@ -50,7 +50,7 @@ namespace view;
                method: "POST",
                headers: {
                    'Content-Type': 'application/json',
-                   'Authorization': "Basic " + btoa(document.getElementById('email').value + ":" + document.getElementById('password').value),
+                   'Authorization': "Basic " + btoa(document.getElementById('email').value + ":" + document.getElementById('password').value)
                },
                mode: "cors",
            })
