@@ -16,7 +16,7 @@ use Symfony\Component\Security\Guard\AbstractGuardAuthenticator;
 
 /**
  * @author Mike ten Klooster <mike.tenklooster001@fclive.nl> <226751> <25187> <Applicatie Ontwikkeling>
- * @version 3
+ * @version 8
  *
  * Class TokenAuthenticator
  * @package App\Security
@@ -88,7 +88,7 @@ class TokenAuthenticator extends AbstractGuardAuthenticator
     {
         $token = new Token();
 
-        if(!$user->getTokenExpiresAt() > new \DateTime("now") && !$credentials == $user->getApiToken())
+        if($user->getTokenExpiresAt() <= new \DateTime("now") && !$credentials == $user->getApiToken())
         {
             return false;
         } else {
@@ -124,7 +124,6 @@ class TokenAuthenticator extends AbstractGuardAuthenticator
      */
     public function onAuthenticationSuccess(Request $request, TokenInterface $token, $providerKey)
     {
-        // on success, let the request continue
         return null;
     }
 

@@ -1,6 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="PhpIncludePathManager">
+  <component name="ChangeListManager">
+    <list default="true" id="ccc04fd4-a0eb-4a82-8f08-bc195488adfe" name="Default Changelist" comment="" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ComposerSettings" doNotAsk="true" synchronizationState="SYNCHRONIZE">
+    <pharConfigPath>$PROJECT_DIR$/composer.json</pharConfigPath>
+    <execution>
+      <executable />
+    </execution>
+  </component>
+  <component name="PhpWorkspaceProjectConfiguration">
     <include_path>
       <path value="$PROJECT_DIR$/vendor/psr/log" />
       <path value="$PROJECT_DIR$/vendor/psr/cache" />
@@ -103,5 +116,74 @@
       <path value="$PROJECT_DIR$/vendor/nelmio/cors-bundle" />
     </include_path>
   </component>
-  <component name="PhpProjectSharedConfiguration" php_language_level="7.1" />
+  <component name="ProjectId" id="1Zqjii3RuJJjVv5pLN5LhmCWqYh" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showExcludedFiles" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="settings.editor.selected.configurable" value="editor.preferences.fonts.default" />
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="ccc04fd4-a0eb-4a82-8f08-bc195488adfe" name="Default Changelist" comment="" />
+      <created>1585573646442</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1585573646442</updated>
+      <workItem from="1585573649107" duration="3912000" />
+      <workItem from="1585638952880" duration="7262000" />
+      <workItem from="1585824252652" duration="653000" />
+      <workItem from="1585827603304" duration="14000" />
+      <workItem from="1585831959591" duration="449000" />
+      <workItem from="1586264097609" duration="20000" />
+      <workItem from="1586427210195" duration="4580000" />
+      <workItem from="1586503707504" duration="1913000" />
+      <workItem from="1586937737008" duration="6000" />
+      <workItem from="1586939164854" duration="2808000" />
+      <workItem from="1587023814962" duration="4872000" />
+      <workItem from="1587035927731" duration="1217000" />
+      <workItem from="1587118928186" duration="1536000" />
+      <workItem from="1587368440520" duration="4459000" />
+      <workItem from="1587382772591" duration="865000" />
+      <workItem from="1587453965582" duration="1454000" />
+      <workItem from="1587542417885" duration="1462000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="1512" y="179" key="#Inspections" timestamp="1585575451600">
+      <screen x="0" y="0" width="3840" height="1040" />
+    </state>
+    <state x="1512" y="179" key="#Inspections/0.0.3840.1040@0.0.3840.1040" timestamp="1585575451600" />
+    <state x="1650" y="276" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1585644724958">
+      <screen x="0" y="0" width="3840" height="1040" />
+    </state>
+    <state x="1650" y="276" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.3840.1040@0.0.3840.1040" timestamp="1585644724958" />
+    <state x="1754" y="444" key="NewPhpFileDialog" timestamp="1585644389845">
+      <screen x="0" y="0" width="3840" height="1040" />
+    </state>
+    <state x="1754" y="444" key="NewPhpFileDialog/0.0.3840.1040@0.0.3840.1040" timestamp="1585644389845" />
+    <state x="1421" y="163" key="SettingsEditor" timestamp="1585644659999">
+      <screen x="0" y="0" width="3840" height="1040" />
+    </state>
+    <state x="1421" y="163" key="SettingsEditor/0.0.3840.1040@0.0.3840.1040" timestamp="1585644659999" />
+    <state x="1616" y="345" key="com.intellij.ide.util.TipDialog" timestamp="1587542420067">
+      <screen x="0" y="0" width="3840" height="1040" />
+    </state>
+    <state x="1616" y="345" key="com.intellij.ide.util.TipDialog/0.0.3840.1040@0.0.3840.1040" timestamp="1587542420067" />
+    <state x="1583" y="225" width="672" height="678" key="search.everywhere.popup" timestamp="1587034671755">
+      <screen x="0" y="0" width="3840" height="1040" />
+    </state>
+    <state x="1583" y="225" width="672" height="678" key="search.everywhere.popup/0.0.3840.1040@0.0.3840.1040" timestamp="1587034671755" />
+  </component>
 </project>

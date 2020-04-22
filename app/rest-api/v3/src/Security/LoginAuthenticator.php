@@ -16,7 +16,7 @@ use Symfony\Component\Security\Guard\AbstractGuardAuthenticator;
 
 /**
  * @author Mike ten Klooster <mike.tenklooster001@fclive.nl> <226751> <25187> <Applicatie Ontwikkeling>
- * @version 3
+ * @version 8
  *
  * Class LoginAuthenticator
  * @package App\Security
@@ -50,7 +50,7 @@ class LoginAuthenticator extends AbstractGuardAuthenticator
      */
     public function supports(Request $request)
     {
-        if (($request->getPathInfo() == '/api/v3/login' || $request->isMethod('POST')) && ($request->headers->has('Authorization') && 0 === strpos($request->headers->get('Authorization'), 'Basic '))) {
+        if (($request->getPathInfo() == '/api/v8/login' || $request->isMethod('POST')) && ($request->headers->has('Authorization') && 0 === strpos($request->headers->get('Authorization'), 'Basic '))) {
             return true;
         }
         return false;

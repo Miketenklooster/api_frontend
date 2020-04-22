@@ -14,7 +14,7 @@ use FOS\RestBundle\Controller\Annotations as Rest;
 
 /**
  * @author Mike ten Klooster <mike.tenklooster001@fclive.nl> <226751> <25187> <Applicatie Ontwikkeling>
- * @version 3
+ * @version 8
  *
  * Class MovieController
  * @package App\Controller
@@ -59,10 +59,13 @@ class MovieController extends AbstractFOSRestController
             return new Response(json_encode(["status"=>"There were no movies found"]), Response::HTTP_NOT_FOUND);
         }
 
-        //Format $movie to json
-        $data = $this->serializer->serialize($movies, 'json');
+        $msg = [
+            "status"=>"getAll",
+            "message"=> $movies,
+            "access_token"=> $this->getUser()->getApiToken()
+        ];
 
-        return new Response($data);
+        return new Response(json_encode($msg));
     }
 
     /**
@@ -89,10 +92,13 @@ class MovieController extends AbstractFOSRestController
             return new Response(json_encode(["status"=>"There was no a movie found"]), Response::HTTP_NOT_FOUND);
         }
 
-        //Format $movie to json
-        $data = $this->serializer->serialize($movie, 'json');
+        $msg = [
+            "status"=>"getOne",
+            "message"=> $movie,
+            "access_token"=> $this->getUser()->getApiToken()
+        ];
 
-        return new Response($data);
+        return new Response(json_encode($msg));
     }
 
     /**
@@ -123,17 +129,14 @@ class MovieController extends AbstractFOSRestController
         //this executes the query
         $this->em->flush();
 
-        //Make Response
-        $response =
-            [
-                "status"=>"Created",
-                "id"=>$movie->getId()
-            ];
+        $msg = [
+            "status"=>"Create",
+            "message"=> $movie,
+            "access_token"=> $this->getUser()->getApiToken()
+        ];
 
         //Format $response to json
-        $response = $this->serializer->serialize($response, 'json');
-
-        return new Response($response, Response::HTTP_CREATED);
+        return new Response(json_encode($msg), Response::HTTP_CREATED);
     }
 
     /**
@@ -175,16 +178,13 @@ class MovieController extends AbstractFOSRestController
         $this->em->flush();
 
         //Make Response
-        $response =
-            [
-                "status"=>"Updated",
-                "id"=>$movie->getId()
-            ];
+        $msg = [
+            "status"=>"Update",
+            "message"=> $movie,
+            "access_token"=> $this->getUser()->getApiToken()
+        ];
 
-        //Format $response to json
-        $response = $this->serializer->serialize($response, 'json');
-
-        return new Response($response, Response::HTTP_CREATED);
+        return new Response(json_encode($msg), Response::HTTP_CREATED);
     }
 
     /**
@@ -219,14 +219,11 @@ class MovieController extends AbstractFOSRestController
         $this->em->flush();
 
         //Make Response
-        $response =
-            [
-                "status"=>"Deleted"
-            ];
+        $msg = [
+            "status"=>"Deleted",
+            "access_token"=> $this->getUser()->getApiToken()
+        ];
 
-        //Format $response to json
-        $response = $this->serializer->serialize($response, 'json');
-
-        return new Response($response, Response::HTTP_CREATED);
+        return new Response(json_encode($msg), Response::HTTP_CREATED);
     }
 }
