@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>FrontEnd</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="../dist/css/uikit.min.css" />
+        <link rel="stylesheet" href="../dist/css/index.css" />
+        <script src="../dist/js/uikit.min.js"></script>
+        <script src="../dist/js/uikit-icons.min.js"></script>
+    </head>
+    <body>
+        <nav class="uk-navbar-container uk-navbar uk-container">
+            <div class="uk-navbar-left">
+                <ul class="uk-navbar-nav">
+                    <li class="uk-navbar-item"><a>Home</a></li>
+                    <li class="uk-navbar-item"><a onclick="load_content('./movie.html')">Movie</a></li>
+                    <li class="uk-navbar-item"><a href="">...</a></li>
+                </ul>
+            </div>
+            <div class="uk-navbar-right">
+                <ul class="uk-navbar-nav">
+                    <li class="uk-navbar-item"><a onclick="logout()">Logout</a></li>
+                </ul>
+            </div>
+        </nav>
+        <main id="main-content" class="uk-container uk-margin-top">
+
+        </main>
+        <script>
+            ((e) => {
+                if(sessionStorage.getItem("bearer_token") === null){
+                    window.location.href = "./login.html";
+                }
+
+                if(sessionStorage.getItem("site") === null){
+                    sessionStorage.setItem("site", "./dashboard.html"); //later dashboard.html
+                }
+                load_content(sessionStorage.getItem("site"));
+            })();
+
+            function load_content (url) {
+                sessionStorage.setItem('site', url);
+                //e.preventDefault();
+                fetch(url /*, options */)
+                    .then((response) => response.text())
+                    .then((html) => {
+                        const content = document.getElementById("main-content");
+                        content.innerHTML = html;
+                        let scripts = content.getElementsByTagName("script");
+                        for (let i = 0; i < scripts.length; i++) {
+                            eval(scripts[i].innerText);
+                        }
+                    })
+                    .catch((error) => {
+                        console.error(error);
+                    });
+            }
+
+            function logout() {
+                sessionStorage.removeItem("bearer_token");
+                sessionStorage.removeItem("site");
+                window.location.href = "./login.html";
+            }
+
+        </script>
+    </body>
+</html>

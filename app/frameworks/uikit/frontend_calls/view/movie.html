@@ -1,0 +1,263 @@
+<article class="uk-article">
+    <h1 class="uk-article-title uk-margin-top">Movies</h1>
+    <section >
+        <!-- This is the add button -->
+        <button class="uk-button uk-button-large uk-button-success uk-align-right" type="button" uk-toggle="target: #modal-add">Add</button>
+
+        <!-- This is the table -->
+        <table class="uk-table uk-table-middle uk-table-divider uk-width-1-1 uk-table-striped">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Name</th>
+                    <th>Description</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody id="movies-body">
+            </tbody>
+            <div id="spinner" class="uk-position-center uk-hidden">
+                <div uk-spinner="ratio:4"></div>
+            </div>
+        </table>
+
+        <!-- This is the add modal -->
+        <div id="modal-add" uk-modal>
+            <div class="uk-modal-dialog uk-modal-body">
+                <h2 class="uk-modal-title">Add</h2>
+                <form id="modal-add-form">
+                    <label for="nameAdd">Name</label>
+                    <input id="nameAdd" class="uk-input uk-margin-bottom" type="text">
+
+                    <label for="descriptionAdd">Description</label>
+                    <textarea id="descriptionAdd" class="uk-textarea" rows="5"></textarea>
+
+                    <p class="uk-text-right">
+                        <button class="uk-button uk-button-default uk-modal-close" type="submit">Cancel</button>
+                        <button class="uk-button uk-button-success" type="submit">Add</button>
+                    </p>
+                </form>
+            </div>
+        </div>
+
+        <!-- This is the edit modal -->
+        <div id="modal-edit" uk-modal>
+            <div class="uk-modal-dialog uk-modal-body">
+                <h2 class="uk-modal-title">Edit</h2>
+                <form id="modal-edit-form">
+                    <label for="name">Name</label>
+                    <input id="name" class="uk-input uk-margin-bottom" type="text">
+
+                    <label for="description">Description</label>
+                    <textarea id="description" class="uk-textarea" rows="5"></textarea>
+
+                    <p class="uk-text-right">
+                        <button class="uk-button uk-button-default uk-modal-close" type="submit">Cancel</button>
+                        <button class="uk-button uk-button-primary" type="submit">Save</button>
+                    </p>
+                </form>
+            </div>
+        </div>
+
+        <!-- This is the del modal -->
+        <div id="modal-del" uk-modal>
+            <h2 class="uk-modal-dialog uk-modal-body ">Delete</h2>
+            <div class="uk-modal-dialog uk-modal-footer">
+                <form id="modal-del-form" class="uk-text-right">
+                        <button class="uk-button uk-button-large uk-button-default uk-modal-close" type="submit">Cancel</button>
+                        <button class="uk-button uk-button-large uk-button-danger" type="submit">Delete</button>
+                </form>
+            </div>
+        </div>
+
+    </section>
+</article>
+<script>
+    const tbody = document.getElementById('movies-body'); // Get the list where we will place our authors
+    const url = "http://127.0.0.1:8000/api/v8";
+
+    document.getElementById('modal-add-form').addEventListener("submit", (e) => {
+        e.preventDefault();
+        fetch(url + "/movie", {
+            method: "POST",
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': "Bearer " + sessionStorage.getItem("bearer_token")
+            },
+            body: JSON.stringify({
+                name: document.getElementById('nameAdd').value,
+                description: document.getElementById('descriptionAdd').value
+            })
+        })
+        .then((response) => response.json())
+        .then((data) => {
+            sessionStorage.setItem("bearer_token", data["access_token"]);
+            window.location.reload();
+        })
+        .catch((error) => {
+            console.error(error);
+        })
+    });
+
+    fetch(url + "/movie", {
+        method: "GET",
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': "Bearer " + sessionStorage.getItem("bearer_token")
+        }
+    })
+        .then((response) => response.json())
+        .then((data) => {
+
+            document.getElementById('spinner').classList.remove("uk-hidden");
+            const movies = data["message"];
+            sessionStorage.setItem("bearer_token", data["access_token"]);
+
+            let i = 1;
+            return movies.map((movies) => { // Map through the results and for each run the code below
+                const tr = document.createElement('tr'), //  Create the elements we need
+                    td = document.createElement('td'),
+                    td2 = document.createElement('td'),
+                    td3 = document.createElement('td'),
+                    td4 = document.createElement('td'),
+                    a = document.createElement('a'),
+                    a2 = document.createElement('a');
+
+                let a_icon  = document.createAttribute('uk-icon'),
+                    a_toggle  = document.createAttribute('uk-toggle'),
+                    a_class  = document.createAttribute('class'),
+                    a_id  = document.createAttribute('id'),
+                    a_icon2 = document.createAttribute('uk-icon'),
+                    a_toggle2  = document.createAttribute('uk-toggle'),
+                    a_class2  = document.createAttribute('class'),
+                    a_id2  = document.createAttribute('id');
+
+                td.innerHTML = i; //movies["id"]
+                td2.innerHTML = movies["name"];
+                td3.innerHTML = movies["description"];
+                a_icon.value ='pencil';
+                a_toggle.value = "target: #modal-edit";
+                a_class.value = "uk-margin-right uk-text-primary pencil";
+                a_id.value = movies["id"];
+                a_icon2.value ='trash';
+                a_toggle2.value = "target: #modal-del";
+                a_class2.value = "uk-text-danger trash";
+                a_id2.value = movies["id"];
+
+                a.setAttributeNode(a_icon);
+                a.setAttributeNode(a_toggle);
+                a.setAttributeNode(a_class);
+                a.setAttributeNode(a_id);
+                a2.setAttributeNode(a_icon2);
+                a2.setAttributeNode(a_toggle2);
+                a2.setAttributeNode(a_class2);
+                a2.setAttributeNode(a_id2);
+
+                tr.appendChild(td);
+                tr.appendChild(td2);
+                tr.appendChild(td3);
+                td4.appendChild(a);
+                td4.appendChild(a2);
+                tr.appendChild(td4);
+                tbody.appendChild(tr);
+
+                i++;
+                document.getElementById('spinner').classList.add("uk-hidden");
+            })
+        })
+        .then((data) => {
+            let edit = document.querySelectorAll('.pencil');
+
+            edit.forEach((edit) => {
+                edit.addEventListener('click', (e) => {
+
+                    let id = edit.getAttribute('id');
+
+                    fetch(url + "/movie/" + id, {
+                        method: "GET",
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'Authorization': "Bearer " + sessionStorage.getItem("bearer_token"),
+                        }
+                    })
+                    .then((response) => response.json())
+                    .then((data) => {
+                        const movie = data["message"];
+                        sessionStorage.setItem("bearer_token", data["access_token"]);
+
+                        document.getElementById('name').value = movie["name"];
+                        document.getElementById('description').value = movie['description'];
+                        document.getElementById('modal-edit-form').addEventListener("submit", (e) => {
+
+                            e.preventDefault();
+                            fetch(url + "/movie/" + id, {
+                                method: "PUT",
+                                headers: {
+                                    'Content-Type': 'application/json',
+                                    'Authorization': "Bearer " + sessionStorage.getItem("bearer_token"),
+                                },
+                                body: JSON.stringify({
+                                    name: document.getElementById('name').value,
+                                    description: document.getElementById('description').value
+                                })
+                            })
+                            .then((response) => response.json())
+                            .then((data) => {
+                                sessionStorage.setItem("bearer_token", data["access_token"]);
+                                // setTimeout(() => {
+                                    window.location.reload();
+                                // }, 1000);
+                            })
+                            .catch((error) => {
+                                console.error(error);
+                                window.location.href = "./login.html";
+                            });
+                        });
+                    })
+                    .catch((error) => {
+                        console.error(error);
+                        window.location.href = "./login.html";
+                    });
+                });
+            });
+
+            let del = document.querySelectorAll('.trash');
+
+            del.forEach((del) => {
+                del.addEventListener('click', (e) => {
+                    let id = del.getAttribute('id');
+
+                    document.getElementById('modal-del-form').addEventListener("submit", (e) => {
+                        e.preventDefault();
+
+                        fetch(url + "/movie/" + id, {
+                            method: "Delete",
+                            headers: {
+                                'Content-Type': 'application/json',
+                                'Authorization': "Bearer " + sessionStorage.getItem("bearer_token"),
+                            },
+                        })
+                        .then((response) => response.json())
+                        .then((data) => {
+                            sessionStorage.setItem("bearer_token", data["access_token"]);
+                            window.location.reload();
+                        })
+                        .catch((error) => {
+                            console.error(error);
+                            window.location.href = "./login.html";
+                        });
+                    });
+                })
+            });
+        })
+        .catch(function (error) {
+            console.error(error);
+            window.location.href = "./login.html";
+        });
+
+
+
+</script>
+
+
+

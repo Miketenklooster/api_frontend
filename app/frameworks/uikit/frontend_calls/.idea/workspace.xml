@@ -13,6 +13,14 @@
       <executable />
     </execution>
   </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="CSS File" />
+        <option value="HTML File" />
+      </list>
+    </option>
+  </component>
   <component name="PhpWorkspaceProjectConfiguration">
     <include_path>
       <path value="$PROJECT_DIR$/vendor/ralouphie/getallheaders" />
@@ -30,9 +38,11 @@
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/dist/img" />
+    <property name="list.type.of.created.stylesheet" value="CSS" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
@@ -59,7 +69,13 @@
       <workItem from="1586416508404" duration="13486000" />
       <workItem from="1586437147801" duration="855000" />
       <workItem from="1586503646174" duration="1098000" />
-      <workItem from="1587036579174" duration="584000" />
+      <workItem from="1587036579174" duration="3821000" />
+      <workItem from="1587119949418" duration="4015000" />
+      <workItem from="1587368484968" duration="13745000" />
+      <workItem from="1587454015695" duration="8570000" />
+      <workItem from="1587464532612" duration="26000" />
+      <workItem from="1587464562779" duration="8328000" />
+      <workItem from="1587542459319" duration="8504000" />
     </task>
     <servers />
   </component>
@@ -67,25 +83,29 @@
     <option name="version" value="1" />
   </component>
   <component name="WindowStateProjectService">
+    <state x="1512" y="179" key="#Inspections" timestamp="1587379502968">
+      <screen x="0" y="0" width="3840" height="1040" />
+    </state>
+    <state x="1512" y="179" key="#Inspections/0.0.3840.1040@0.0.3840.1040" timestamp="1587379502968" />
     <state x="1650" y="276" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1586417696944">
       <screen x="0" y="0" width="3840" height="1040" />
     </state>
     <state x="1650" y="276" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.3840.1040@0.0.3840.1040" timestamp="1586417696944" />
-    <state x="1754" y="444" key="NewPhpFileDialog" timestamp="1586347150491">
+    <state x="1754" y="444" key="NewPhpFileDialog" timestamp="1587454028336">
       <screen x="0" y="0" width="3840" height="1040" />
     </state>
-    <state x="1754" y="444" key="NewPhpFileDialog/0.0.3840.1040@0.0.3840.1040" timestamp="1586347150491" />
+    <state x="1754" y="444" key="NewPhpFileDialog/0.0.3840.1040@0.0.3840.1040" timestamp="1587454028336" />
     <state x="1616" y="345" key="com.intellij.ide.util.TipDialog" timestamp="1586503646130">
       <screen x="0" y="0" width="3840" height="1040" />
     </state>
     <state x="1616" y="345" key="com.intellij.ide.util.TipDialog/0.0.3840.1040@0.0.3840.1040" timestamp="1586503646130" />
-    <state x="1576" y="240" key="run.anything.popup" timestamp="1587036862396">
+    <state x="1576" y="240" key="run.anything.popup" timestamp="1587460078967">
       <screen x="0" y="0" width="3840" height="1040" />
     </state>
-    <state x="1576" y="240" key="run.anything.popup/0.0.3840.1040@0.0.3840.1040" timestamp="1587036862396" />
-    <state x="1583" y="225" width="672" height="678" key="search.everywhere.popup" timestamp="1586437396161">
+    <state x="1576" y="240" key="run.anything.popup/0.0.3840.1040@0.0.3840.1040" timestamp="1587460078967" />
+    <state x="1583" y="225" width="672" height="678" key="search.everywhere.popup" timestamp="1587549436942">
       <screen x="0" y="0" width="3840" height="1040" />
     </state>
-    <state x="1583" y="225" width="672" height="678" key="search.everywhere.popup/0.0.3840.1040@0.0.3840.1040" timestamp="1586437396161" />
+    <state x="1583" y="225" width="672" height="678" key="search.everywhere.popup/0.0.3840.1040@0.0.3840.1040" timestamp="1587549436942" />
   </component>
 </project>
