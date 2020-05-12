@@ -41,17 +41,18 @@
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/dist/img" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/view" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
   </component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\xampp\htdocs\frontend_framework\uikit_project\php_calls\dist\img" />
-      <recent name="C:\xampp\htdocs\frontend_framework\uikit_project\php_calls\dist" />
-    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\xampp\htdocs\frontend_framework\uikit_project\php_calls\controller" />
       <recent name="C:\xampp\htdocs\frontend_framework\uikit_project\php_calls" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\xampp\htdocs\frontend_framework\uikit_project\frontend_calls\view" />
+      <recent name="C:\xampp\htdocs\frontend_framework\uikit_project\php_calls\dist\img" />
+      <recent name="C:\xampp\htdocs\frontend_framework\uikit_project\php_calls\dist" />
     </key>
   </component>
   <component name="SvnConfiguration">
@@ -76,6 +77,10 @@
       <workItem from="1587464532612" duration="26000" />
       <workItem from="1587464562779" duration="8328000" />
       <workItem from="1587542459319" duration="8504000" />
+      <workItem from="1587551669913" duration="665000" />
+      <workItem from="1587553402914" duration="1293000" />
+      <workItem from="1587633323787" duration="9578000" />
+      <workItem from="1587712284586" duration="5383000" />
     </task>
     <servers />
   </component>
@@ -95,10 +100,10 @@
       <screen x="0" y="0" width="3840" height="1040" />
     </state>
     <state x="1754" y="444" key="NewPhpFileDialog/0.0.3840.1040@0.0.3840.1040" timestamp="1587454028336" />
-    <state x="1616" y="345" key="com.intellij.ide.util.TipDialog" timestamp="1586503646130">
+    <state x="1616" y="345" key="com.intellij.ide.util.TipDialog" timestamp="1587712284479">
       <screen x="0" y="0" width="3840" height="1040" />
     </state>
-    <state x="1616" y="345" key="com.intellij.ide.util.TipDialog/0.0.3840.1040@0.0.3840.1040" timestamp="1586503646130" />
+    <state x="1616" y="345" key="com.intellij.ide.util.TipDialog/0.0.3840.1040@0.0.3840.1040" timestamp="1587712284479" />
     <state x="1576" y="240" key="run.anything.popup" timestamp="1587460078967">
       <screen x="0" y="0" width="3840" height="1040" />
     </state>
