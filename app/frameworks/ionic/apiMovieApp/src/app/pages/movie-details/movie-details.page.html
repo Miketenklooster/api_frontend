@@ -1,0 +1,25 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/"></ion-back-button>
+    </ion-buttons>
+    <ion-title>{{ information?.name }}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+
+  <ion-card *ngIf="information">
+    <ion-card-header >
+      <ion-card-title>
+        {{ information.name }}
+      </ion-card-title>
+    </ion-card-header>
+    <ion-card-content class="ion-margin-top">
+      <ion-item lines="none">
+        <ion-label>{{ information.description }}</ion-label>
+      </ion-item>
+    </ion-card-content>
+  </ion-card>
+
+</ion-content>
