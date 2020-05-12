@@ -1,0 +1,68 @@
+<article class="uk-article uk-position-center">
+    <h1 class="uk-article-title uk-margin-top uk-margin-xlarge-bottom uk-text-center">Welcome back</h1>
+
+    <div class="uk-grid-small uk-child-width-auto uk-grid-center" uk-grid>
+        <div>
+            <div class="uk-countdown-number" id="days"></div>
+            <div class="uk-countdown-label uk-margin-small uk-text-center uk-visible@s" id="day"></div>
+        </div>
+        <div class="uk-countdown-separator">:</div>
+        <div>
+            <div class="uk-countdown-number" id="hours"></div>
+            <div class="uk-countdown-label uk-margin-small uk-text-center uk-visible@s">Hours</div>
+        </div>
+        <div class="uk-countdown-separator">:</div>
+        <div>
+            <div class="uk-countdown-number" id="minutes"></div>
+            <div class="uk-countdown-label uk-margin-small uk-text-center uk-visible@s">Minutes</div>
+        </div>
+        <div class="uk-countdown-separator">:</div>
+        <div>
+            <div class="uk-countdown-number" id="seconds"></div>
+            <div class="uk-countdown-label uk-margin-small uk-text-center uk-visible@s">Seconds</div>
+        </div>
+    </div>
+
+</article>
+<script>
+    ((e) => {
+        let date = new Date(),
+            day = date.getDay().toString(),
+            days = date.getDate().toString(),
+            hours = date.getHours().toString(),
+            minutes = date.getMinutes().toString(),
+            seconds = date.getSeconds().toString();
+
+        let weekday = new Array(7);
+        weekday[0] = "Sun";
+        weekday[1] = "Mon";
+        weekday[2] = "Tue";
+        weekday[3] = "Wed";
+        weekday[4] = "Thu";
+        weekday[5] = "Fri";
+        weekday[6] = "Sat";
+
+        document.getElementById("day").innerHTML = weekday[day];
+        document.getElementById("days").innerHTML = days;
+        document.getElementById("hours").innerHTML = hours;
+        document.getElementById("minutes").innerHTML = minutes;
+        document.getElementById("seconds").innerHTML = seconds;
+
+        let datetime = setInterval(function(){Timer()},1000);
+
+        function Timer() {
+            let date = new Date(),
+                day = date.getDay().toString(),
+                days = date.getDate().toString(),
+                hours = date.getHours().toString(),
+                minutes = date.getMinutes().toString(),
+                seconds = date.getSeconds().toString();
+
+            document.getElementById("day").innerHTML = weekday[day];
+            document.getElementById("days").innerHTML = days;
+            document.getElementById("hours").innerHTML = hours;
+            document.getElementById("minutes").innerHTML = minutes;
+            document.getElementById("seconds").innerHTML = seconds;
+        }
+    })();
+</script>
