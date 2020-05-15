@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>FrontEnd</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="dist/css/uikit.min.css" />
+        <link rel="stylesheet" href="dist/css/index.css" />
+        <script src="dist/js/uikit.min.js"></script>
+        <script src="dist/js/uikit-icons.min.js"></script>
+        <script src="dist/js/omdb.js"></script>
+    </head>
+    <body>
+        <nav class="uk-navbar-container uk-navbar uk-container">
+            <div class="uk-navbar-left">
+                <ul class="uk-navbar-nav">
+                    <li class="uk-navbar-item"><a onclick="getView('main-content', 'view/dashboard.html')">Detail</a></li>
+                </ul>
+            </div>
+            <div class="uk-navbar-right">
+                <ul class="uk-navbar-nav">
+                    <li class="uk-navbar-item">Hiiiiiiiiiiiiiiiiiiiiiii</a></li>
+                </ul>
+            </div>
+        </nav>
+        <main id="main-content" class="uk-container uk-margin-top">
+
+        </main>
+        <script>
+            ((e) => {
+                if(sessionStorage.getItem("site") === null){
+                    sessionStorage.setItem("site", "view/dashboard.html");
+                }
+                if(sessionStorage.getItem("title") === null){
+                    sessionStorage.setItem("title", "Endgame");
+                }
+
+                getView(sessionStorage.getItem("site"));
+            })();
+
+        </script>
+    </body>
+</html>
