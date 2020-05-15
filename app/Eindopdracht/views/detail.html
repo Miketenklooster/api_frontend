@@ -1,0 +1,40 @@
+<ul class="uk-breadcrumb">
+    <li><a onclick="getView('main-content', 'views/home.html')">Home</a></li>
+    <li><span>movie</span></li>
+</ul>
+<section id="list-section">
+
+</section>
+<table>
+    <thead>
+        <tr>
+            <th>Poster</th>
+            <th>Title</th>
+            <th>Year</th>
+            <th>Rated</th>
+            <th>Runtime</th>
+        </tr>
+    </thead>
+    <tbody id="body">
+    </tbody>
+</table>
+
+<script>
+    ((e) => {
+        let url2 = "http://www.omdbapi.com/?t=" + sessionStorage.getItem('omdbID') + "&apikey=" + key;
+
+        fetch(url2)
+            .then((data) => data.json())
+            .then((json) => {
+                const tr = document.createElement('tr');
+                tr.innerHTML =  "<td><img alt='' src=" + json.Poster + " height='297'  width='200'></td>";
+                tr.innerHTML += "<td>" + json.Title + "</td>";
+                tr.innerHTML += "<td>" + json.Year + "</td>";
+                tr.innerHTML += "<td>" + json.Rated + "</td>";
+                tr.innerHTML += "<td>" + json.Runtime + "</td>";
+                document.getElementById("body").appendChild(tr);
+        });
+    })();
+
+</script>
+

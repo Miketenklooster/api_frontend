@@ -1,0 +1,36 @@
+<ul class="uk-breadcrumb">
+    <li><span>Home</span></li>
+</ul>
+
+<section id="list-section">
+
+</section>
+
+<!--<ul class="uk-list uk-list-divider">-->
+<!--    <li>List item 1</li>-->
+<!--    <li>List item 2</li>-->
+<!--    <li>List item 3</li>-->
+<!--</ul>-->
+<script>
+    ((e) => {
+        /**
+         * There are multiple answers so there should be a loop
+         * @type {string}
+         */
+        let url2 = "http://www.omdbapi.com/?s=" + sessionStorage.getItem("title") + "&apikey=" + key;
+        fetch(url2)
+            .then((data) => data.json())
+            .then((json) => {
+                const s = json["Search"];
+                s.map((s) => {
+                    const ul = document.createElement('ul');
+                    ul.innerHTML =  "<li><img alt='' src=" + json.Poster + " height='297'  width='200'></li>";
+                    ul.innerHTML += "<li>" + json.Title + "</li>";
+                    ul.innerHTML += "<li>" + json.Year + "</li>";
+                    ul.innerHTML += "<li>" + json.Type + "</li>";
+                    document.getElementById("list-section").appendChild(ul);
+                });
+
+            });
+    })();
+</script>
