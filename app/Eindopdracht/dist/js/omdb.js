@@ -26,6 +26,7 @@ function getAll() {
 }
 
 function getDetails(id) {
+    sessionStorage.setItem("omdbID", id);
     return fetch(url + "?i=" + id + "&plot=full&apikey=" + key, {
         method: "GET",
         headers: {

@@ -13,8 +13,8 @@
     <body>
         <nav class="uk-navbar-container uk-navbar uk-container">
             <div class="uk-navbar-left">
-                <ul class="uk-navbar-nav">
-                    <li class="uk-navbar-item"><a onclick="getView('main-content', 'view/dashboard.html')">Detail</a></li>
+                <ul class="uk-navbar-nav" id="nav">
+                    <!--         hier wordt de nav ingeladen           -->
                 </ul>
             </div>
             <div class="uk-navbar-right">
@@ -28,14 +28,18 @@
         </main>
         <script>
             ((e) => {
+                const nav = document.getElementById("nav");
+                //tijdelijk
+                nav.innerHTML = '<li class="uk-navbar-item"><a onclick="getView(\'main-content\', \'views/detail.html\')">Detail</a></li>';
+
                 if(sessionStorage.getItem("site") === null){
-                    sessionStorage.setItem("site", "view/dashboard.html");
+                    sessionStorage.setItem("site", "views/home.html");
                 }
                 if(sessionStorage.getItem("title") === null){
                     sessionStorage.setItem("title", "Endgame");
                 }
 
-                getView(sessionStorage.getItem("site"));
+                getView("main-content", sessionStorage.getItem("site"));
             })();
 
         </script>

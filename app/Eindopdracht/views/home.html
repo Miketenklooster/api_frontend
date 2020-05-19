@@ -23,6 +23,27 @@
             .then((json) => {
                 const s = json["Search"];
                 s.map((s) => {
+                    const nav = document.getElementById("nav");
+                    //tijdelijk
+                    nav.innerHTML = '<li class="uk-navbar-item"><a onclick="getView(\'main-content\', \'views/detail.html\')">Detail</a></li>';
+
+                    const data = '<article class="uk-comment">\n' +
+                        '<header class="uk-comment-header uk-grid-medium uk-flex-middle" uk-grid>\n' +
+                        '        <div class="uk-width-auto">\n' +
+                        '            <img class="uk-comment-avatar" src="' + json.Poster + '" width="80" height="80" alt="">\n' +
+                        '        </div>\n' +
+                        '        <div class="uk-width-expand">\n' +
+                        '            <h4 class="uk-comment-title uk-margin-remove"><a class="uk-link-reset" href="#">' + json.Title + '</a></h4>\n' +
+                        '            <ul class="uk-comment-meta uk-subnav uk-subnav-divider uk-margin-remove-top">\n' +
+                        '                <li><a href="#">' + json.Released + '</a></li>\n' +
+                        '                <li><a href="#">Reply</a></li>\n' +
+                        '            </ul>\n' +
+                        '        </div>\n' +
+                        '    </header>\n' +
+                        '    <div class="uk-comment-body">\n' +
+                        '        <p>' + json.Plot + '</p>\n' +
+                        '    </div>\n' +
+                        '   </article>';
                     const ul = document.createElement('ul');
                     ul.innerHTML =  "<li><img alt='' src=" + json.Poster + " height='297'  width='200'></li>";
                     ul.innerHTML += "<li>" + json.Title + "</li>";
