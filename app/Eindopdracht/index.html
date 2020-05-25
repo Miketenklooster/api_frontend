@@ -11,27 +11,20 @@
         <script src="dist/js/omdb.js"></script>
     </head>
     <body>
-        <nav class="uk-navbar-container uk-navbar uk-container">
-            <div class="uk-navbar-left">
-                <ul class="uk-navbar-nav" id="nav">
-                    <!--         hier wordt de nav ingeladen           -->
-                </ul>
-            </div>
-            <div class="uk-navbar-right">
-                <ul class="uk-navbar-nav">
-                    <li class="uk-navbar-item">Hiiiiiiiiiiiiiiiiiiiiiii</a></li>
-                </ul>
-            </div>
-        </nav>
+        <header>
+            <nav class="uk-navbar-container uk-navbar uk-container">
+                <div id="nav" class="uk-margin-medium-right"></div>
+                <div id="nav-search-title" class="uk-width-expand uk-navbar-left"></div>
+            </nav>
+        </header>
         <main id="main-content" class="uk-container uk-margin-top">
-
+        <!--  This is were the main content is loaded  -->
         </main>
+        <footer id="footer" class="uk-container uk-text-center uk-margin-large">
+            <a href="" uk-totop>Back to top </a>
+        </footer>
         <script>
             ((e) => {
-                const nav = document.getElementById("nav");
-                //tijdelijk
-                nav.innerHTML = '<li class="uk-navbar-item"><a onclick="getView(\'main-content\', \'views/detail.html\')">Detail</a></li>';
-
                 if(sessionStorage.getItem("site") === null){
                     sessionStorage.setItem("site", "views/home.html");
                 }

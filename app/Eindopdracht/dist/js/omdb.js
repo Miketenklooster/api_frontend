@@ -8,55 +8,8 @@ const type = {
     episode: 'episode'
 };
 
-function getAll() {
-    fetch(url + "?s=" + sessionStorage.getItem('title') + "&apikey=" + key, {
-        method: "GET",
-        headers: {
-            'Content-Type': 'application/json'
-        }
-    })
-        .then((response) => response.json())
-        .then((json) => {
-            const data = json["Search"];
-            return data.map((data) => {
-                console.log(data);
-            });
-        })
-        .catch((error) => console.error(error))
-}
-
-function getDetails(id) {
-    sessionStorage.setItem("omdbID", id);
-    return fetch(url + "?i=" + id + "&plot=full&apikey=" + key, {
-        method: "GET",
-        headers: {
-            'Content-Type': 'application/json'
-        }
-    })
-        .then((response) => response.json())
-        .catch((error) => console.error(error))
-}
-
-function searchData(title, type) {
-    sessionStorage.setItem("title", title);
-    return fetch(url + "?s=" + title + "&type=" + type + "&apikey=" + key, {
-        method: "GET",
-        headers: {
-            'Content-Type': 'application/json'
-        }
-    })
-        .then((response) => response.json())
-        .then((json) => {
-            json.map(json => json["Search"]);
-            console.log(json);
-        })
-        .catch((error) => console.error(error))
-}
-
 function getView(elementId, view) {
-
     sessionStorage.setItem('site', view);
-    //e.preventDefault();
     return fetch(view /*, options */)
         .then((response) => response.text())
         .then((html) => {
@@ -69,3 +22,50 @@ function getView(elementId, view) {
         })
         .catch((error) => console.error(error))
 }
+
+// For code optimisation
+//
+// function getAll() {
+//     fetch(url + "?s=" + sessionStorage.getItem('title') + "&apikey=" + key, {
+//         method: "GET",
+//         headers: {
+//             'Content-Type': 'application/json'
+//         }
+//     })
+//         .then((response) => response.json())
+//         .then((json) => {
+//             const data = json["Search"];
+//             return data.map((data) => {
+//                 console.log(data);
+//             });
+//         })
+//         .catch((error) => console.error(error))
+// }
+//
+// function getDetails(id) {
+//     sessionStorage.setItem("omdbID", id);
+//     return fetch(url + "?i=" + id + "&plot=full&apikey=" + key, {
+//         method: "GET",
+//         headers: {
+//             'Content-Type': 'application/json'
+//         }
+//     })
+//         .then((response) => response.json())
+//         .catch((error) => console.error(error))
+// }
+//
+// function searchData(title, type) {
+//     sessionStorage.setItem("title", title);
+//     return fetch(url + "?s=" + title + "&type=" + type + "&apikey=" + key, {
+//         method: "GET",
+//         headers: {
+//             'Content-Type': 'application/json'
+//         }
+//     })
+//         .then((response) => response.json())
+//         .then((json) => {
+//             json.map(json => json["Search"]);
+//             console.log(json);
+//         })
+//         .catch((error) => console.error(error))
+// }

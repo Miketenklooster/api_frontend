@@ -2,19 +2,35 @@
     <li><span>Home</span></li>
 </ul>
 
-<section id="list-section">
+<section id="table-section" class="uk-overflow-auto">
+    <table class="uk-table uk-table-hover uk-table-middle uk-table-divider">
+        <thead>
+            <tr>
+                <th>Poster</th>
+                <th>Title</th>
+                <th>Year</th>
+                <th>Type</th>
+            </tr>
+        </thead>
+        <tbody id="table-body">
 
+        </tbody>
+    </table>
 </section>
-
-<!--<ul class="uk-list uk-list-divider">-->
-<!--    <li>List item 1</li>-->
-<!--    <li>List item 2</li>-->
-<!--    <li>List item 3</li>-->
-<!--</ul>-->
 <script>
     ((e) => {
+        const nav_title = document.getElementById("nav-search-title");
+        const data = '<div class="uk-navbar-item uk-width-expand uk-navbar-left">\n' +
+            '                    <form class="uk-search uk-search-navbar uk-width-1-1" onsubmit="sessionStorage.setItem(\'title\', document.getElementById(\'search\').value);" method="post">\n' +
+            '                        <span uk-search-icon></span>\n' +
+            '                        <input id="search" class="uk-search-input" type="search" placeholder="Search..." autofocus>\n' +
+            '                    </form>\n' +
+            '                </div>';
+
+        nav_title.innerHTML = data;
+
         /**
-         * There are multiple answers so there should be a loop
+         * This fetch request gets the data from the omdbapi and loops through the results
          * @type {string}
          */
         let url2 = "http://www.omdbapi.com/?s=" + sessionStorage.getItem("title") + "&apikey=" + key;
@@ -22,36 +38,21 @@
             .then((data) => data.json())
             .then((json) => {
                 const s = json["Search"];
+
                 s.map((s) => {
                     const nav = document.getElementById("nav");
-                    //tijdelijk
-                    nav.innerHTML = '<li class="uk-navbar-item"><a onclick="getView(\'main-content\', \'views/detail.html\')">Detail</a></li>';
+                    nav.innerHTML = '';
+                    const table = document.getElementById('table-body');
+                    const data =
+                        '<tr style="cursor: pointer;" onclick="getView(\'main-content\', \'views/detail.html\');  sessionStorage.setItem(\'imdbID\', \'' + s.imdbID + '\')">' +
+                        '   <td><img src="' + s.Poster + '" width="100" height="100" alt=""></td>' +
+                        '   <td>' + s.Title + '</td>' +
+                        '   <td>' + s.Year + '</td>' +
+                        '   <td>' + s.Type + '</td>' +
+                        '</tr>';
 
-                    const data = '<article class="uk-comment">\n' +
-                        '<header class="uk-comment-header uk-grid-medium uk-flex-middle" uk-grid>\n' +
-                        '        <div class="uk-width-auto">\n' +
-                        '            <img class="uk-comment-avatar" src="' + json.Poster + '" width="80" height="80" alt="">\n' +
-                        '        </div>\n' +
-                        '        <div class="uk-width-expand">\n' +
-                        '            <h4 class="uk-comment-title uk-margin-remove"><a class="uk-link-reset" href="#">' + json.Title + '</a></h4>\n' +
-                        '            <ul class="uk-comment-meta uk-subnav uk-subnav-divider uk-margin-remove-top">\n' +
-                        '                <li><a href="#">' + json.Released + '</a></li>\n' +
-                        '                <li><a href="#">Reply</a></li>\n' +
-                        '            </ul>\n' +
-                        '        </div>\n' +
-                        '    </header>\n' +
-                        '    <div class="uk-comment-body">\n' +
-                        '        <p>' + json.Plot + '</p>\n' +
-                        '    </div>\n' +
-                        '   </article>';
-                    const ul = document.createElement('ul');
-                    ul.innerHTML =  "<li><img alt='' src=" + json.Poster + " height='297'  width='200'></li>";
-                    ul.innerHTML += "<li>" + json.Title + "</li>";
-                    ul.innerHTML += "<li>" + json.Year + "</li>";
-                    ul.innerHTML += "<li>" + json.Type + "</li>";
-                    document.getElementById("list-section").appendChild(ul);
+                    table.innerHTML += data;
                 });
-
             });
     })();
 </script>

@@ -6,27 +6,13 @@
     </section>
 </article>
 
-<!--<table>-->
-<!--    <thead>-->
-<!--        <tr>-->
-<!--            <th>Poster</th>-->
-<!--            <th>Title</th>-->
-<!--            <th>Year</th>-->
-<!--            <th>Rated</th>-->
-<!--            <th>Runtime</th>-->
-<!--        </tr>-->
-<!--    </thead>-->
-<!--    <tbody id="body">-->
-<!--    </tbody>-->
-<!--</table>-->
-
 <script>
     ((e) => {
-        if(sessionStorage.getItem("omdbID") === null){
-            sessionStorage.setItem("omdbID", "tt4154796");
+        if(sessionStorage.getItem("imdbID") === null){
+            sessionStorage.setItem("imdbID", "tt4154796");
         }
 
-        let url2 = "http://www.omdbapi.com/?i=" + sessionStorage.getItem('omdbID') + "&apikey=" + key;
+        let url2 = "http://www.omdbapi.com/?i=" + sessionStorage.getItem('imdbID') + "&apikey=" + key;
 
         fetch(url2)
             .then((data) => data.json())
@@ -34,8 +20,12 @@
                 const section = document.getElementById("section");
                 const breadcrumb = document.getElementById("breadcrumb");
                 const nav = document.getElementById("nav");
+                const nav_title = document.getElementById("nav-search-title");
+                const footer = document.getElementById("footer");
 
                 nav.innerHTML = '<li class="uk-navbar-item uk-position-left"><a onclick="getView(\'main-content\', \'views/home.html\')" uk-icon="icon: arrow-left; ratio: 2;"></a></li>';
+                nav_title.innerHTML = '<a class="uk-navbar-item uk-margin-left uk-text-large">' + json.Title + '</a>';
+                footer.innerHTML = '';
 
                 breadcrumb.innerHTML = '<li><a onclick="getView(\'main-content\', \'views/home.html\')">Home</a></li>';
                 breadcrumb.innerHTML += '<li><span>' + json.Title + '</span></li>\n';
@@ -56,18 +46,7 @@
                     '        <p>' + json.Plot + '</p>\n' +
                     '    </div>\n';
 
-                // section.innerHTML =  "<img alt='' src=" + json.Poster + " height='297'  width='200'>";
-                // section.innerHTML += "<h1 class='uk-article-title'>"+ json.Title + "</h1>";
                 section.innerHTML += data;
-
-
-                // const tr = document.createElement('tr');
-                // tr.innerHTML =  "<td><img alt='' src=" + json.Poster + " height='297'  width='200'></td>";
-                // tr.innerHTML += "<td>" + json.Title + "</td>";
-                // tr.innerHTML += "<td>" + json.Year + "</td>";
-                // tr.innerHTML += "<td>" + json.Rated + "</td>";
-                // tr.innerHTML += "<td>" + json.Runtime + "</td>";
-                // document.getElementById("body").appendChild(tr);
         });
     })();
 
