@@ -28,17 +28,24 @@
     border-color: #e5e5e5;
 }
 
-/*
-* Inline List
-*/
-ul {
-    display: flex;
-    flex-direction: row;
-    /* Below sets up your display method: flex-start|flex-end|space-between|space-around */
-    justify-content: flex-start;
-    /* Below removes bullets and cleans white-space */
-    list-style: none;
-    padding: 0;
-    /* Bonus: forces no word-wrap */
-    white-space: nowrap;
-}
+/*!**/
+/** Better color for selected active*/
+/* *!*/
+/*.uk-subnav-pill > .uk-active > a{*/
+/*    background-color: #999;*/
+/*}*/
+
+/*!**/
+/** Inline List*/
+/**!*/
+/*ul {*/
+/*    display: flex;*/
+/*    flex-direction: row;*/
+/*    !* Below sets up your display method: flex-start|flex-end|space-between|space-around *!*/
+/*    justify-content: flex-start;*/
+/*    !* Below removes bullets and cleans white-space *!*/
+/*    list-style: none;*/
+/*    padding: 0;*/
+/*    !* Bonus: forces no word-wrap *!*/
+/*    white-space: nowrap;*/
+/*}*/

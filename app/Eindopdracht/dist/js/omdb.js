@@ -8,8 +8,9 @@ const type = {
     episode: 'episode'
 };
 
-function getView(elementId, view) {
+function getView(elementId, view, page) {
     sessionStorage.setItem('site', view);
+    sessionStorage.setItem('page', page);
     return fetch(view /*, options */)
         .then((response) => response.text())
         .then((html) => {
@@ -21,6 +22,29 @@ function getView(elementId, view) {
             }
         })
         .catch((error) => console.error(error))
+}
+
+function prevPage()
+{
+    let current_page = Number(sessionStorage.getItem("page"));
+    if (current_page > 1) {
+        current_page--;
+        getView('main-content', 'views/home.html', current_page);
+    }
+}
+
+function nextPage(totalResults)
+{
+    let current_page = Number(sessionStorage.getItem("page"));
+    if (current_page < numPages(totalResults)) {
+        current_page++;
+        getView('main-content', 'views/home.html', current_page);
+    }
+}
+
+function numPages(totalResults)
+{
+    return Math.ceil(totalResults / 9);
 }
 
 // For code optimisation

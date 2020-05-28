@@ -1,7 +1,7 @@
 <!DOCTYPE html>
-<html>
+<html class="uk-background-secondary">
     <head>
-        <title>FrontEnd</title>
+        <title>Movie Radar</title>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="dist/css/uikit.min.css" />
@@ -10,17 +10,18 @@
         <script src="dist/js/uikit-icons.min.js"></script>
         <script src="dist/js/omdb.js"></script>
     </head>
-    <body>
+    <body class="uk-light uk-padding">
         <header>
-            <nav class="uk-navbar-container uk-navbar uk-container">
-                <div id="nav" class="uk-margin-medium-right"></div>
+            <h1 class="uk-text-center">Search what you want to watch</h1>
+            <nav class="uk-navbar uk-container uk-background-primary">
+                <div id="nav" class="uk-margin-medium-right uk-navbar-nav"></div>
                 <div id="nav-search-title" class="uk-width-expand uk-navbar-left"></div>
             </nav>
         </header>
         <main id="main-content" class="uk-container uk-margin-top">
         <!--  This is were the main content is loaded  -->
         </main>
-        <footer id="footer" class="uk-container uk-text-center uk-margin-large">
+        <footer id="footer" class="uk-container uk-text-center">
             <a href="" uk-totop>Back to top </a>
         </footer>
         <script>
@@ -31,10 +32,12 @@
                 if(sessionStorage.getItem("title") === null){
                     sessionStorage.setItem("title", "Endgame");
                 }
+                if(sessionStorage.getItem("page") === null){
+                    sessionStorage.setItem("page", "1");
+                }
 
-                getView("main-content", sessionStorage.getItem("site"));
+                getView("main-content", sessionStorage.getItem("site"), Number(sessionStorage.getItem('page')));
             })();
-
         </script>
     </body>
 </html>

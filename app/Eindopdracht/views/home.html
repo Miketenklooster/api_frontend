@@ -2,26 +2,27 @@
     <li><span>Home</span></li>
 </ul>
 
-<section id="table-section" class="uk-overflow-auto">
-    <table class="uk-table uk-table-hover uk-table-middle uk-table-divider">
-        <thead>
-            <tr>
-                <th>Poster</th>
-                <th>Title</th>
-                <th>Year</th>
-                <th>Type</th>
-            </tr>
-        </thead>
-        <tbody id="table-body">
+<section class="uk-overflow-auto">
+    <div id="section"></div>
+    <div uk-filter="target: .js-filter">
 
-        </tbody>
-    </table>
+        <ul class="uk-subnav uk-subnav-pill">
+            <li class="uk-active" uk-filter-control><a href="#">All</a></li>
+            <li uk-filter-control=".tag-movie"><a href="#">Movies</a></li>
+            <li uk-filter-control=".tag-series"><a href="#">Series</a></li>
+            <li uk-filter-control=".tag-episodes"><a href="#">Episodes</a></li>
+        </ul>
+        <div class="uk-flex uk-flex-wrap uk-flex-wrap-around uk-child-width-auto uk-child-width-1-3@xl uk-child-width-1-3@l uk-child-width-1-3@m uk-child-width-1-2@s js-filter" id="flex"></div>
+        <p id="error" class="uk-text-center uk-text-light uk-text-large uk-margin-large-top"></p>
+    </div>
 </section>
 <script>
     ((e) => {
+        const section = document.getElementById("section");
         const nav_title = document.getElementById("nav-search-title");
+
         const data = '<div class="uk-navbar-item uk-width-expand uk-navbar-left">\n' +
-            '                    <form class="uk-search uk-search-navbar uk-width-1-1" onsubmit="sessionStorage.setItem(\'title\', document.getElementById(\'search\').value);" method="post">\n' +
+            '                    <form class="uk-search  uk-search-navbar uk-width-1-1" onsubmit="sessionStorage.setItem(\'title\', document.getElementById(\'search\').value); sessionStorage.setItem(\'page\', \'1\');" method="post">\n' +
             '                        <span uk-search-icon></span>\n' +
             '                        <input id="search" class="uk-search-input" type="search" placeholder="Search..." autofocus>\n' +
             '                    </form>\n' +
@@ -33,26 +34,40 @@
          * This fetch request gets the data from the omdbapi and loops through the results
          * @type {string}
          */
-        let url2 = "http://www.omdbapi.com/?s=" + sessionStorage.getItem("title") + "&apikey=" + key;
+        let url2 = "http://www.omdbapi.com/?s=" + sessionStorage.getItem("title") + "&page=" + Number(sessionStorage.getItem('page')) + "&apikey=" + key;
         fetch(url2)
             .then((data) => data.json())
             .then((json) => {
-                const s = json["Search"];
+                if(json["Error"]) {
+                    document.getElementById("error").innerHTML = 'There were no results found with ' + sessionStorage.getItem("title") + ', try a more specific search';
+                }
+                else {
+                    const search = json["Search"];
 
-                s.map((s) => {
-                    const nav = document.getElementById("nav");
-                    nav.innerHTML = '';
-                    const table = document.getElementById('table-body');
-                    const data =
-                        '<tr style="cursor: pointer;" onclick="getView(\'main-content\', \'views/detail.html\');  sessionStorage.setItem(\'imdbID\', \'' + s.imdbID + '\')">' +
-                        '   <td><img src="' + s.Poster + '" width="100" height="100" alt=""></td>' +
-                        '   <td>' + s.Title + '</td>' +
-                        '   <td>' + s.Year + '</td>' +
-                        '   <td>' + s.Type + '</td>' +
-                        '</tr>';
+                    const section_data =
+                        '<ul class="uk-pagination uk-flex-center">\n' +
+                        '    <li class="uk-margin-large-right"><a onclick="prevPage();"><span class="uk-margin-small-left" uk-pagination-previous></span> Previous</a></li>\n' +
+                        '    <li class="uk-text-i"><a>' + sessionStorage.getItem("page") + '</a></li>\n' +
+                        '    <li class="uk-margin-large-left"><a onclick="nextPage(' + json["totalResults"] + ');">Next <span class="uk-margin-small-right" uk-pagination-next></span></a></li>\n' +
+                        '</ul>';
+                    section.innerHTML += section_data;
 
-                    table.innerHTML += data;
-                });
-            });
+                    search.map((search) => {
+                        const nav = document.getElementById("nav");
+                        nav.innerHTML = '';
+                        const flex = document.getElementById('flex');
+                        const data =
+                            '<div class="uk-card uk-card-body tag-' + search["Type"] + '">' +
+                            '   <div class="uk-card-media-top">' +
+                            '       <a onclick="getView(\'main-content\', \'views/detail.html\', Number(sessionStorage.getItem(\'page\')));  sessionStorage.setItem(\'imdbID\', \'' + search["imdbID"] + '\')"><img src="' + search["Poster"] + '" alt="image"></a>' +
+                            '   </div>' +
+                            '   <div class="uk-card-footer uk-text-center">\n' +
+                            '       <p><a class="uk-text-lead" onclick="getView(\'main-content\', \'views/detail.html\', Number(sessionStorage.getItem(\'page\')));  sessionStorage.setItem(\'imdbID\', \'' + search["imdbID"] + '\')">' + search["Title"] + '</a><br/>' + search["Year"] + ' &#183; ' + search["Type"] + '</p>\n' +
+                            '   </div>' +
+                            '</div>';
+                        flex.innerHTML += data;
+                    });
+                }
+            })
     })();
 </script>
