@@ -1,5 +1,7 @@
 <!DOCTYPE html>
-<html class="uk-background-secondary">
+<html class="uk-background-fixed ukcover uk-background-cover" style="background-image: url(dist/img/movie_background.jpg);">
+
+<!--class="uk-background-secondary"-->
     <head>
         <title>Movie Radar</title>
         <meta charset="utf-8">
@@ -12,17 +14,18 @@
     </head>
     <body class="uk-light uk-padding">
         <header>
-            <h1 class="uk-text-center">Search what you want to watch</h1>
-            <nav class="uk-navbar uk-container uk-background-primary">
-                <div id="nav" class="uk-margin-medium-right uk-navbar-nav"></div>
-                <div id="nav-search-title" class="uk-width-expand uk-navbar-left"></div>
-            </nav>
+            <div class="uk-container uk-margin-bottom">
+                <h1 class="uk-text-center" id="title"></h1>
+            </div>
+            <div class="uk-container" id="nav">
+            <!--    This is were the nav content is loaded  -->
+            </div>
         </header>
         <main id="main-content" class="uk-container uk-margin-top">
         <!--  This is were the main content is loaded  -->
         </main>
         <footer id="footer" class="uk-container uk-text-center">
-            <a href="" uk-totop>Back to top </a>
+            <a href="top" uk-totop uk-scroll>Back to top </a>
         </footer>
         <script>
             ((e) => {

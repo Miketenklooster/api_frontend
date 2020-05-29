@@ -1,6 +1,3 @@
-<ul class="uk-breadcrumb" id="breadcrumb">
-<!--    Here is the breadcrumb data loaded    -->
-</ul>
 <article>
     <section id="section" class="uk-text-center">
     <!--    Here is the section data loaded    -->
@@ -18,31 +15,27 @@
             .then((data) => data.json())
             .then((json) => {
                 const section = document.getElementById("section");
-                const breadcrumb = document.getElementById("breadcrumb");
                 const nav = document.getElementById("nav");
-                const nav_title = document.getElementById("nav-search-title");
                 const footer = document.getElementById("footer");
-
-                nav.innerHTML = '<li class="uk-navbar-item uk-position-left"><a onclick="getView(\'main-content\', \'views/home.html\', Number(sessionStorage.getItem(\'page\')))" uk-icon="icon: arrow-left; ratio: 2;"></a></li>';
-                nav_title.innerHTML = '<a class="uk-navbar-item uk-margin-left uk-text-large">' + json["Title"] + '</a>';
+                const title = document.getElementById("title");
+                title.innerHTML = '<a class="uk-align-left uk-width-auto" onclick="getView(\'main-content\', \'views/home.html\', Number(sessionStorage.getItem(\'page\')))"><span uk-icon="icon: arrow-left; ratio: 2;"></span></a><a class="uk-width-2-3">' + json["Title"] + '</a>';
+                nav.innerHTML = '';
                 footer.innerHTML = '';
 
-                breadcrumb.innerHTML = '<li><a onclick="getView(\'main-content\', \'views/home.html\', Number(sessionStorage.getItem(\'page\'))">Home</a></li>';
-                breadcrumb.innerHTML += '<li><span>' + json["Title"] + '</span></li>\n';
                 const data =
-                    '<div class="uk-card uk-grid-collapse uk-child-width-auto uk-margin-large-top" uk-grid>\n' +
-                    '    <div class="uk-card-media-left uk-cover-container ">\n' +
-                    '        <img src="' + json["Poster"] + '" alt="" >\n' +
+                    '<div class="uk-flex uk-flex-top" uk-grid>' +
+                    '    <div class="uk-width-1-3@m">' +
+                    '        <img class="uk-background-cover" src="' + json["Poster"] + '" alt="" >' +
                     '    </div>\n' +
-                    '    <div class="uk-text-left uk-panel uk-panel-box uk-width-3-4">\n' +
-                    '        <div class="uk-card uk-card-body">\n' +
-                    '            <h3 class="uk-card-title uk-h3">' + json["Title"] + '</h3>\n' +
-                    '            <p class="uk-text-light">' + json["Genre"] + ' &#183; ' + json["Released"] + ' &#183; ' + json["Runtime"] + '</p>\n' +
-                    '        </div>\n' +
-                    '        <div class="uk-card uk-card-body uk-text-break">\n' +
-                    '           <p class="uk-text-light">' + json["Plot"] + '</p>\n' +
+                    '    <div class="uk-width-2-3@m uk-text-center@s uk-text-left@m">' +
+                    '        <div class="">' +
+                    '            <h3 class="uk-h3">' + json["Title"] + '</h3>' +
+                    '            <p class="uk-text-light">' + json["Genre"] + ' &#183; ' + json["Released"] + ' &#183; ' + json["Runtime"] + '</p>' +
                     '        </div>' +
-                    '    </div>\n' +
+                    '        <div class="uk-margin-large-top">' +
+                    '           <p class="uk-text-light">' + json["Plot"] + '</p>' +
+                    '        </div>' +
+                    '    </div>' +
                     '</div>';
                 section.innerHTML += data;
         });
