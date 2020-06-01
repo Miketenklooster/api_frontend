@@ -27,12 +27,15 @@
         const section = document.getElementById("next_page");
         document.getElementById("npage").placeholder = sessionStorage.getItem('page');
         const title = document.getElementById("title");
-        title.innerHTML = 'Search what you want to watch';
+        title.innerHTML = '<h1><span class="white uk-text-bold">MOVIE </span><span class="lightpink uk-text-bold">RADAR</span></p>';
         const nav = document.getElementById("nav");
+        const background = document.getElementById("background");
+        background.style = "background-image: url(dist/img/movie_background.jpg);";
 
         const data =
-            '<form class="uk-inline uk-width-1-1" onsubmit="sessionStorage.setItem(\'title\', document.getElementById(\'search\').value); sessionStorage.setItem(\'page\', \'1\');" method="post">' +
-            '   <input id="search" class="uk-input uk-text-center uk-form-large" type="search" placeholder="Search..." autofocus>' +
+            '<form class="uk-search uk-search-default" onsubmit="sessionStorage.setItem(\'title\', document.getElementById(\'search\').value); sessionStorage.setItem(\'page\', \'1\');" method="post">' +
+            '   <span class="uk-form-icon uk-form-icon-flip" uk-icon="icon: search"></span>' +
+            '   <input id="search" class="uk-input uk-form-large" type="text" placeholder="Search what you want to watch..." autofocus>' +
             '</form>';
 
         nav.innerHTML = data;

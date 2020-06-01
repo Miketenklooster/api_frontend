@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html class="uk-background-fixed ukcover uk-background-cover" style="background-image: url(dist/img/movie_background.jpg);">
+<html class="uk-background-secondary">
 
 <!--class="uk-background-secondary"-->
     <head>
@@ -12,20 +12,27 @@
         <script src="dist/js/uikit-icons.min.js"></script>
         <script src="dist/js/omdb.js"></script>
     </head>
-    <body class="uk-light uk-padding">
+    <body >
         <header>
-            <div class="uk-container uk-margin-bottom">
-                <h1 class="uk-text-center" id="title"></h1>
-            </div>
-            <div class="uk-container" id="nav">
-            <!--    This is were the nav content is loaded  -->
+<!--            class="uk-background-cover uk-height-large" style="background-image: url(dist/img/movie_background.jpg);"-->
+            <div id="background" class="uk-section uk-background-cover" style="background-image: url(dist/img/movie_background.jpg)">
+                <div class="uk-container uk-text-center">
+                    <h1 id="title">
+
+                    </h1>
+                    <div class="uk-grid-match uk-flex-center uk-child-width-1-2 uk-margin-large-top" uk-grid>
+                        <div class="uk-container" id="nav">
+                            <!--    This is were the nav content is loaded  -->
+                        </div>
+                    </div>
+                </div>
             </div>
         </header>
-        <main id="main-content" class="uk-container uk-margin-top">
+        <main id="main-content" class="uk-container uk-light uk-margin-top">
         <!--  This is were the main content is loaded  -->
         </main>
-        <footer id="footer" class="uk-container uk-text-center">
-            <a href="top" uk-totop uk-scroll>Back to top </a>
+        <footer id="footer" class="uk-container uk-text-center uk-light uk-margin-large-bottom">
+            <a href="top" uk-totop uk-scroll>Back to top</a>
         </footer>
         <script>
             ((e) => {
