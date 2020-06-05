@@ -31,13 +31,44 @@
 /*
 * New colors
  */
-
 .white {
     color: #ffffff;
 }
 
 .lightpink {
     color: #FFCCD1;
+}
+
+/*
+* Always show scrollbar
+ */
+html {
+    overflow-y:scroll;
+}
+
+/*
+* No underline with .underline:hover
+ */
+.underline:hover{
+    text-decoration: none;
+}
+
+/*
+* No arrows in a number text field for
+* Chrome, Safari, Edge, Opera
+*/
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+/*
+* No arrows in a number text field for
+* Firefox
+*/
+input[type=number] {
+    -moz-appearance: textfield;
 }
 
 /*!**/

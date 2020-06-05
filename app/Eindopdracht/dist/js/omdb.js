@@ -1,4 +1,4 @@
-const url = 'http://www.omdbapi.com/';
+const url = 'https://www.omdbapi.com/';
 const key = 'e94fc62a';
 
 const type = {
@@ -26,7 +26,7 @@ function getView(elementId, view, page) {
 
 function prevPage()
 {
-    let current_page = Number(sessionStorage.getItem("page"));
+    let current_page = parseInt(sessionStorage.getItem("page"), 10);
     if (current_page > 1) {
         current_page--;
         getView('main-content', 'views/home.html', current_page);
@@ -35,7 +35,7 @@ function prevPage()
 
 function nextPage(totalResults)
 {
-    let current_page = Number(sessionStorage.getItem("page"));
+    let current_page = parseInt(sessionStorage.getItem("page"), 10);
     if (current_page < numPages(totalResults)) {
         current_page++;
         getView('main-content', 'views/home.html', current_page);
@@ -44,7 +44,11 @@ function nextPage(totalResults)
 
 function numPages(totalResults)
 {
-    return Math.ceil(totalResults / 9);
+    let results = Math.ceil(totalResults / 10);
+    if(isNaN(results)){
+        results = 0;
+    }
+    return results;
 }
 
 // For code optimisation

@@ -1,22 +1,24 @@
 <section class="uk-overflow-auto">
     <div id="section">
         <ul class="uk-pagination uk-flex-center">
-            <li class="uk-margin-auto"><a onclick="prevPage();"><span class="uk-margin-small-left" uk-pagination-previous></span><span class="uk-margin-small-left" uk-pagination-previous></span></a></li>
+            <li class="uk-margin-auto" id="prev-page"><a onclick="prevPage();"><span class="uk-margin-small-left" uk-pagination-previous></span><span class="uk-margin-small-left" uk-pagination-previous></span></a></li>
             <li class="uk-text-i">
-                <form method="post" onsubmit="sessionStorage.setItem('page', document.getElementById('npage').value);">
-                    <input id="npage" name="npage" class="uk-input uk-form-width-xsmall uk-form-small uk-text-center" type="text">
+                <form method="post" id="search-page-by-number">
+                    <input id="npage" name="npage" class="uk-input uk-form-width-xsmall uk-form-small uk-text-center" type="number" min="1">
                 </form>
             </li>
-            <li class="uk-margin-auto" id="next_page"></li>
+            <li class="uk-margin-auto" id="next-page"></li>
         </ul>
+        <div class="uk-text-i uk-text-light uk-text-center">
+            <p class="uk-margin-auto" id="total-pages"></p>
+        </div>
     </div>
-    <div uk-filter="target: .js-filter">
-
+    <div uk-filter="target: .js-filter; animation: 500">
         <ul class="uk-subnav uk-subnav-pill uk-child-width-auto@s uk-text-center">
-            <li class="uk-active" uk-filter-control><a href="all">All</a></li>
-            <li uk-filter-control=".tag-movie"><a href="movies">Movies</a></li>
-            <li uk-filter-control=".tag-series"><a href="series">Series</a></li>
-            <li uk-filter-control=".tag-game"><a href="games">Games</a></li>
+            <li class="uk-active" uk-filter-control><a>All</a></li>
+            <li uk-filter-control=".tag-movie"><a>Movies</a></li>
+            <li uk-filter-control=".tag-series"><a>Series</a></li>
+            <li uk-filter-control=".tag-game"><a>Games</a></li>
         </ul>
         <div class="uk-flex uk-flex-wrap uk-flex-center uk-child-width-auto uk-child-width-1-3@xl uk-child-width-1-3@l uk-child-width-1-3@m uk-child-width-1-2@s js-filter" id="flex"></div>
         <p id="error" class="uk-text-center uk-text-light uk-text-large uk-margin-large-top"></p>
@@ -24,48 +26,96 @@
 </section>
 <script>
     ((e) => {
-        const section = document.getElementById("next_page");
+        const section = document.getElementById("next-page");
         document.getElementById("npage").placeholder = sessionStorage.getItem('page');
         const title = document.getElementById("title");
-        title.innerHTML = '<h1><span class="white uk-text-bold">MOVIE </span><span class="lightpink uk-text-bold">RADAR</span></p>';
+        title.innerHTML = '<a class="uk-width-auto underline" onclick="getView(\'main-content\', \'views/home.html\', \'1\')"><span class="white uk-text-bold">MOVIE </span><span class="lightpink uk-text-bold">RADAR</span></a>';
         const nav = document.getElementById("nav");
+        const total_pages = document.getElementById("total-pages");
         const background = document.getElementById("background");
         background.style = "background-image: url(dist/img/movie_background.jpg);";
 
         const data =
-            '<form class="uk-search uk-search-default" onsubmit="sessionStorage.setItem(\'title\', document.getElementById(\'search\').value); sessionStorage.setItem(\'page\', \'1\');" method="post">' +
+            '<form id="search-form" class="uk-search uk-search-default"  method="post">' +
             '   <span class="uk-form-icon " uk-icon="icon: search"></span>' +
-            '   <input id="search" class="uk-input uk-form-large" type="text" placeholder="Search what you want to watch..." autofocus>' +
+            '   <input id="search" class="uk-input uk-form-large" type="text" autofocus>' +
             '</form>';
 
         nav.innerHTML = data;
+        document.getElementById("search").placeholder = sessionStorage.getItem("search_bar");
+
+        const search_form = document.getElementById('search-form');
+
+        search_form.addEventListener('submit', function(event) {
+            event.preventDefault();
+            sessionStorage.setItem('title', document.getElementById('search').value);
+            sessionStorage.setItem('page', '1');
+            sessionStorage.setItem("search_bar", document.getElementById('search').value);
+            fetch('views/home' /*, options */)
+                .then((response) => response)
+                .then((response) => {
+                    getView('main-content', 'views/home.html', parseInt(sessionStorage.getItem('page'), 10));
+                })
+                .catch((error) => console.error(error));
+        });
+
+        const search_page_by_number = document.getElementById('search-page-by-number');
+
+        search_page_by_number.addEventListener('submit', function(event) {
+            event.preventDefault();
+            let number = document.getElementById('npage').value;
+            sessionStorage.setItem('page', number);
+            fetch('views/home' /*, options */)
+                .then((response) => response)
+                .then((response) => {
+                    getView('main-content', 'views/home.html', parseInt(sessionStorage.getItem('page'), 10));
+                })
+                .catch((error) => console.error(error));
+        });
 
         /**
          * This fetch request gets the data from the omdbapi and loops through the results
          * @type {string}
          */
-        let url2 = "http://www.omdbapi.com/?s=" + sessionStorage.getItem("title") + "&page=" + Number(sessionStorage.getItem('page')) + "&apikey=" + key;
+        let url2 = "https://www.omdbapi.com/?s=" + sessionStorage.getItem("title") + "&page=" + parseInt(sessionStorage.getItem('page'), 10) + "&apikey=" + key;
         fetch(url2)
             .then((data) => data.json())
             .then((json) => {
+                if(parseInt(sessionStorage.getItem('page'), 10) === numPages(json["totalResults"])){
+                    document.getElementById("next-page").style.visibility = "hidden";
+                } else if(parseInt(sessionStorage.getItem('page'), 10) === 1){
+                    document.getElementById("prev-page").style.visibility = "hidden";
+                }
+                document.getElementById("npage").max = numPages(json["totalResults"]);
                 const section_data = '<a onclick="nextPage(' + json["totalResults"] + ');"><span class="uk-margin-small-right" uk-pagination-next></span><span class="uk-margin-small-right" uk-pagination-next></span></a>';
                 section.innerHTML += section_data;
+
+                total_pages.innerHTML = '<p>Total pages: '+ numPages(json["totalResults"]) +'</p>';
+
+                const flex = document.getElementById('flex');
 
                 if(json["Error"]) {
                     document.getElementById("error").innerHTML = 'There were no results found with ' + sessionStorage.getItem("title") + ', try a more specific search';
                 }
                 else {
                     const search = json["Search"];
-
+                    let poster;
                     search.map((search) => {
-                        const flex = document.getElementById('flex');
+                        if(search["Poster"] === "N/A"){
+                            //set background image
+                            poster = "./dist/img/image-not-found.png";
+                        }else{
+                            //set background image
+                            poster = search["Poster"];
+                        }
+
                         const data =
                             '<div class="uk-card uk-card-body tag-' + search["Type"] + '">' +
-                            '   <div class="uk-card-media-top">' +
-                            '       <a onclick="getView(\'main-content\', \'views/detail.html\', Number(sessionStorage.getItem(\'page\')));  sessionStorage.setItem(\'imdbID\', \'' + search["imdbID"] + '\')"><img src="' + search["Poster"] + '" alt="image"></a>' +
+                            '   <div class="uk-card-media-top uk-text-center">' +
+                            '       <a onclick="getView(\'main-content\', \'views/detail.html\', parseInt(sessionStorage.getItem(\'page\'), 10));  sessionStorage.setItem(\'imdbID\', \'' + search["imdbID"] + '\')"><img src="' + poster+ '" alt="image" style="max-height: 350px;"></a>' +
                             '   </div>' +
                             '   <div class="uk-card-footer uk-text-center">' +
-                            '       <p><a class="uk-text-lead" onclick="getView(\'main-content\', \'views/detail.html\', Number(sessionStorage.getItem(\'page\')));  sessionStorage.setItem(\'imdbID\', \'' + search["imdbID"] + '\')">' + search["Title"] + '</a><br/>' + search["Year"] + ' &#183; ' + search["Type"] + '</p>' +
+                            '       <p><a class="uk-text-lead" onclick="getView(\'main-content\', \'views/detail.html\', parseInt(sessionStorage.getItem(\'page\'), 10));  sessionStorage.setItem(\'imdbID\', \'' + search["imdbID"] + '\')">' + search["Title"] + '</a><br/>' + search["Year"] + ' &#183; ' + search["Type"] + '</p>' +
                             '   </div>' +
                             '</div>';
                         flex.innerHTML += data;

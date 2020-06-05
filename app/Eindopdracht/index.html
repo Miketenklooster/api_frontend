@@ -1,10 +1,11 @@
 <!DOCTYPE html>
-<html class="uk-background-secondary">
-
-<!--class="uk-background-secondary"-->
+<html class="uk-background-secondary" lang="en-gb">
     <head>
         <title>Movie Radar</title>
-        <meta charset="utf-8">
+        <meta content="text/html;charset=utf-8" http-equiv="Content-Type">
+        <meta name="keywords" content="Movies, Series, Games, Movie Database, Movie Radar">
+        <meta name="author" content="Mike ten Klooster">
+        <meta name="description" content="This page is build with the idea of making it easy for people to find a movie / serie / game they would like to watch or play.">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="dist/css/uikit.min.css" />
         <link rel="stylesheet" href="dist/css/index.css" />
@@ -16,10 +17,10 @@
         <header>
             <div id="background" class="uk-section uk-background-cover" style="background-image: url(dist/img/movie_background.jpg)">
                 <div class="uk-container uk-text-center">
-                    <h1 id="title">
+                    <h1 id="title" class="uk-width-1-1@m uk-width-1-2@s uk-align-center">
 
                     </h1>
-                    <div class="uk-grid-match uk-align-center uk-margin-large-top" uk-grid>
+                    <div class="uk-grid-match uk-align-center uk-margin-large-top uk-width-2-3@m" uk-grid>
                         <div class="uk-container" id="nav">
                             <!--    This is were the nav content is loaded  -->
                         </div>
@@ -31,7 +32,7 @@
         <!--  This is were the main content is loaded  -->
         </main>
         <footer id="footer" class="uk-container uk-text-center uk-light uk-margin-large-bottom">
-            <a href="top" uk-totop uk-scroll>Back to top</a>
+            <a uk-totop uk-scroll>Back to top</a>
         </footer>
         <script>
             ((e) => {
@@ -44,8 +45,10 @@
                 if(sessionStorage.getItem("page") === null){
                     sessionStorage.setItem("page", "1");
                 }
-
-                getView("main-content", sessionStorage.getItem("site"), Number(sessionStorage.getItem('page')));
+                if(sessionStorage.getItem("search_bar") === null){
+                    sessionStorage.setItem("search_bar", "Search what you want to watch...");
+                }
+                getView("main-content", sessionStorage.getItem("site"), parseInt(sessionStorage.getItem('page'), 10));
             })();
         </script>
     </body>
