@@ -1,9 +1,13 @@
 # Eindopdracht Movie Radar
 
-Frontend Framework
-Waarom UIkit? Het doel van dit keuzedeel was om mezelf uit te dagen met nieuwe frontend frameworks, vooral UIkit sprong ver boven mijn verwachtingen uit bij de test projecten.
-Het was groot, gemakkelijk en goed gedocumenteerd. 
+## Frontend Framework:
 
-Doelgroep
-Ik wou een zo groot mogelijk en diverse doelgroep aanspreken als mogelijk is, daarom koos ik ervoor om een film api te gebruiken bij dit project. Deze api staat mij toe om heel veel data op te halen van verschillende films. de invloed dat dit heeft op de doelgroep is enorm, aangezien je nu letterlijk een titel kan zoeken en je meteen de film kan vinden of het nou een tekenfilm is een serie of een thriller.
+Why UIkit? The purpose of this optional part was to challenge myself with new Frontend Frameworks. Especially UIkit exceeded my expectations, Thats why I decided to do my final project with it.
+The reason it exceeded my expectations was that it is well documented and easy to understand.
 
+
+## Target Audience:
+
+I wanted to make my site usable by as many people as possible, to do that I did some research to what almost all people liked. From my results I concluded that movies and series are really popular. This made me choose to use the OMDB API from http://www.omdbapi.com/. 
+
+This API has lot of data which made it possible for me to reach an even larger audience, because this way I was able to get a lot genre's. This way no matter what taste movie or series you have, you can use the site to get the information you want.
