@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html class="uk-height-viewport bg uk-background-cover" lang="en-gb" style="background-image: url(dist/img/deep_space.jpg);">
+    <head>
+        <title>Movie Radar</title>
+        <meta content="text/html;charset=utf-8" http-equiv="Content-Type">
+        <meta name="keywords" content="Movies, Series, Games, Movie Database, Movie Radar">
+        <meta name="author" content="Mike ten Klooster">
+        <meta name="description" content="This page is build with the idea of making it easy for people to find a movie / serie / game they would like to watch or play.">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="dist/css/uikit.min.css" />
+        <link rel="stylesheet" href="dist/css/index.css" />
+        <script src="dist/js/uikit.min.js"></script>
+        <script src="dist/js/uikit-icons.min.js"></script>
+        <script src="dist/js/omdb.js"></script>
+    </head>
+    <body >
+        <header>
+            <div id="background" class="uk-section uk-background-cover">
+                <div class="uk-container uk-text-center">
+                    <h1 id="title" class="uk-width-1-1@m uk-align-center">
+
+                    </h1>
+                    <div class="uk-grid-match uk-align-center uk-margin-large-top uk-width-2-3@m" uk-grid>
+                        <div class="uk-container" id="nav">
+                            <!--    This is were the nav content is loaded  -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+        <div id="spinner" class="uk-position-z-index uk-position-top-center">
+            <span class="white" uk-spinner="ratio: 1" ></span>
+        </div>
+        <main id="main-content" class="uk-container uk-light uk-margin-top">
+        <!--  This is were the main content is loaded  -->
+        </main>
+        <footer id="footer" class="uk-container uk-text-center uk-light uk-margin-large-bottom">
+
+        </footer>
+        <script>
+            ((e) => {
+                if(sessionStorage.getItem("site") === null){
+                    sessionStorage.setItem("site", "views/home.html");
+                }
+                if(sessionStorage.getItem("title") === null){
+                    sessionStorage.setItem("title", "Endgame");
+                }
+                if(sessionStorage.getItem("page") === null){
+                    sessionStorage.setItem("page", "1");
+                }
+                if(sessionStorage.getItem("search_bar") === null){
+                    sessionStorage.setItem("search_bar", "Search what you want to watch...");
+                }
+                timeOut("main-content", sessionStorage.getItem("site"), parseInt(sessionStorage.getItem('page'), 10));
+            })();
+        </script>
+    </body>
+</html>
